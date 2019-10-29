@@ -4,7 +4,7 @@ generator photon {
 
 datasource db {
   provider = "postgresql"
-  url      = "postgresql://audiophile:LevAr8523*@audiophile-tools.clqkmkirkmxi.us-east-1.rds.amazonaws.com:5432/prisma"
+  url = "***"
 }
 
 
@@ -20,7 +20,7 @@ model Company {
   id          String    @default(cuid()) @id
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @updatedAt
-  name        String    @unique
+  name        String
   website     String?
   headphones  Headphone[]
 }
@@ -34,13 +34,13 @@ model Headphone {
   url         String?
   amazonUrl   String?
   images      String[]
-  category    HeadphoneCategory?
+  type        HeadphoneType?
   enclosure   HeadphoneEnclosure?
   freqRespFrom Int? // Hz
   freqRespTo   Int? // kHz
   driverDesc  String?
   driverQty   Int?
-  driverSize  String?
+  driverSize  Float? // mm
   driverType  HeadphoneDriverType?
   driverMaterial  HeadphoneDriverMaterial?
   price       Float? // USD
@@ -197,7 +197,7 @@ enum HeadphoneDriverMaterial {
   BERYLLIUM
 }
 
-enum HeadphoneCategory {
+enum HeadphoneType {
   OVER_EAR
   ON_EAR
   IN_EAR

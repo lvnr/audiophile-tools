@@ -1,0 +1,1313 @@
+{
+  "version": "0.3.14-fixed",
+  "steps": [
+    {
+      "stepType": "CreateModel",
+      "name": "Company",
+      "embedded": false
+    },
+    {
+      "stepType": "CreateModel",
+      "name": "HeadphoneReview",
+      "embedded": false
+    },
+    {
+      "stepType": "DeleteModel",
+      "name": "Post"
+    },
+    {
+      "stepType": "CreateField",
+      "model": "Company",
+      "name": "id",
+      "type": {
+        "Base": "String"
+      },
+      "arity": "required",
+      "isUnique": false,
+      "id": {
+        "strategy": "Auto",
+        "sequence": null
+      },
+      "default": {
+        "Expression": [
+          "cuid",
+          "String",
+          []
+        ]
+      }
+    },
+    {
+      "stepType": "CreateField",
+      "model": "Company",
+      "name": "createdAt",
+      "type": {
+        "Base": "DateTime"
+      },
+      "arity": "required",
+      "isUnique": false,
+      "default": {
+        "Expression": [
+          "now",
+          "DateTime",
+          []
+        ]
+      }
+    },
+    {
+      "stepType": "CreateField",
+      "model": "Company",
+      "name": "updatedAt",
+      "type": {
+        "Base": "DateTime"
+      },
+      "arity": "required",
+      "isUnique": false
+    },
+    {
+      "stepType": "CreateField",
+      "model": "Company",
+      "name": "name",
+      "type": {
+        "Base": "String"
+      },
+      "arity": "required",
+      "isUnique": false
+    },
+    {
+      "stepType": "CreateField",
+      "model": "Company",
+      "name": "website",
+      "type": {
+        "Base": "String"
+      },
+      "arity": "optional",
+      "isUnique": false
+    },
+    {
+      "stepType": "CreateField",
+      "model": "Company",
+      "name": "headphones",
+      "type": {
+        "Relation": {
+          "to": "Headphone",
+          "to_fields": [],
+          "name": "CompanyToHeadphone",
+          "on_delete": "None"
+        }
+      },
+      "arity": "list",
+      "isUnique": false
+    },
+    {
+      "stepType": "CreateField",
+      "model": "Headphone",
+      "name": "model",
+      "type": {
+        "Base": "String"
+      },
+      "arity": "required",
+      "isUnique": false
+    },
+    {
+      "stepType": "CreateField",
+      "model": "Headphone",
+      "name": "company",
+      "type": {
+        "Relation": {
+          "to": "Company",
+          "to_fields": [
+            "id"
+          ],
+          "name": "CompanyToHeadphone",
+          "on_delete": "None"
+        }
+      },
+      "arity": "required",
+      "isUnique": false
+    },
+    {
+      "stepType": "CreateField",
+      "model": "Headphone",
+      "name": "url",
+      "type": {
+        "Base": "String"
+      },
+      "arity": "optional",
+      "isUnique": false
+    },
+    {
+      "stepType": "CreateField",
+      "model": "Headphone",
+      "name": "amazonUrl",
+      "type": {
+        "Base": "String"
+      },
+      "arity": "optional",
+      "isUnique": false
+    },
+    {
+      "stepType": "CreateField",
+      "model": "Headphone",
+      "name": "images",
+      "type": {
+        "Base": "String"
+      },
+      "arity": "list",
+      "isUnique": false
+    },
+    {
+      "stepType": "CreateField",
+      "model": "Headphone",
+      "name": "type",
+      "type": {
+        "Enum": "HeadphoneType"
+      },
+      "arity": "optional",
+      "isUnique": false
+    },
+    {
+      "stepType": "CreateField",
+      "model": "Headphone",
+      "name": "enclosure",
+      "type": {
+        "Enum": "HeadphoneEnclosure"
+      },
+      "arity": "optional",
+      "isUnique": false
+    },
+    {
+      "stepType": "CreateField",
+      "model": "Headphone",
+      "name": "freqRespFrom",
+      "type": {
+        "Base": "Int"
+      },
+      "arity": "optional",
+      "isUnique": false
+    },
+    {
+      "stepType": "CreateField",
+      "model": "Headphone",
+      "name": "freqRespTo",
+      "type": {
+        "Base": "Int"
+      },
+      "arity": "optional",
+      "isUnique": false
+    },
+    {
+      "stepType": "CreateField",
+      "model": "Headphone",
+      "name": "driverDesc",
+      "type": {
+        "Base": "String"
+      },
+      "arity": "optional",
+      "isUnique": false
+    },
+    {
+      "stepType": "CreateField",
+      "model": "Headphone",
+      "name": "driverQty",
+      "type": {
+        "Base": "Int"
+      },
+      "arity": "optional",
+      "isUnique": false
+    },
+    {
+      "stepType": "CreateField",
+      "model": "Headphone",
+      "name": "driverSize",
+      "type": {
+        "Base": "Float"
+      },
+      "arity": "optional",
+      "isUnique": false
+    },
+    {
+      "stepType": "CreateField",
+      "model": "Headphone",
+      "name": "driverType",
+      "type": {
+        "Enum": "HeadphoneDriverType"
+      },
+      "arity": "optional",
+      "isUnique": false
+    },
+    {
+      "stepType": "CreateField",
+      "model": "Headphone",
+      "name": "driverMaterial",
+      "type": {
+        "Enum": "HeadphoneDriverMaterial"
+      },
+      "arity": "optional",
+      "isUnique": false
+    },
+    {
+      "stepType": "CreateField",
+      "model": "Headphone",
+      "name": "price",
+      "type": {
+        "Base": "Float"
+      },
+      "arity": "optional",
+      "isUnique": false
+    },
+    {
+      "stepType": "CreateField",
+      "model": "Headphone",
+      "name": "weigth",
+      "type": {
+        "Base": "Float"
+      },
+      "arity": "optional",
+      "isUnique": false
+    },
+    {
+      "stepType": "CreateField",
+      "model": "Headphone",
+      "name": "impedance",
+      "type": {
+        "Base": "Float"
+      },
+      "arity": "optional",
+      "isUnique": false
+    },
+    {
+      "stepType": "CreateField",
+      "model": "Headphone",
+      "name": "sensitivity",
+      "type": {
+        "Base": "Float"
+      },
+      "arity": "optional",
+      "isUnique": false
+    },
+    {
+      "stepType": "CreateField",
+      "model": "Headphone",
+      "name": "THD90",
+      "type": {
+        "Base": "Float"
+      },
+      "arity": "optional",
+      "isUnique": false
+    },
+    {
+      "stepType": "CreateField",
+      "model": "Headphone",
+      "name": "THD100",
+      "type": {
+        "Base": "Float"
+      },
+      "arity": "optional",
+      "isUnique": false
+    },
+    {
+      "stepType": "CreateField",
+      "model": "Headphone",
+      "name": "wireless",
+      "type": {
+        "Base": "Boolean"
+      },
+      "arity": "optional",
+      "isUnique": false,
+      "default": {
+        "Boolean": false
+      }
+    },
+    {
+      "stepType": "CreateField",
+      "model": "Headphone",
+      "name": "DSP",
+      "type": {
+        "Base": "Boolean"
+      },
+      "arity": "optional",
+      "isUnique": false,
+      "default": {
+        "Boolean": false
+      }
+    },
+    {
+      "stepType": "CreateField",
+      "model": "Headphone",
+      "name": "ANC",
+      "type": {
+        "Base": "Boolean"
+      },
+      "arity": "optional",
+      "isUnique": false,
+      "default": {
+        "Boolean": false
+      }
+    },
+    {
+      "stepType": "CreateField",
+      "model": "Headphone",
+      "name": "cableQty",
+      "type": {
+        "Base": "Int"
+      },
+      "arity": "optional",
+      "isUnique": false
+    },
+    {
+      "stepType": "CreateField",
+      "model": "Headphone",
+      "name": "cableRemovable",
+      "type": {
+        "Base": "Boolean"
+      },
+      "arity": "optional",
+      "isUnique": false
+    },
+    {
+      "stepType": "CreateField",
+      "model": "Headphone",
+      "name": "cableBalanced",
+      "type": {
+        "Base": "Boolean"
+      },
+      "arity": "optional",
+      "isUnique": false
+    },
+    {
+      "stepType": "CreateField",
+      "model": "Headphone",
+      "name": "cableLength",
+      "type": {
+        "Base": "Float"
+      },
+      "arity": "list",
+      "isUnique": false
+    },
+    {
+      "stepType": "CreateField",
+      "model": "Headphone",
+      "name": "cableTermEar",
+      "type": {
+        "Enum": "HeadphoneCableTerm"
+      },
+      "arity": "optional",
+      "isUnique": false
+    },
+    {
+      "stepType": "CreateField",
+      "model": "Headphone",
+      "name": "cableTermAmp",
+      "type": {
+        "Enum": "HeadphoneCableTerm"
+      },
+      "arity": "list",
+      "isUnique": false
+    },
+    {
+      "stepType": "CreateField",
+      "model": "Headphone",
+      "name": "earpadQty",
+      "type": {
+        "Base": "Int"
+      },
+      "arity": "optional",
+      "isUnique": false
+    },
+    {
+      "stepType": "CreateField",
+      "model": "Headphone",
+      "name": "earpadMaterial",
+      "type": {
+        "Enum": "HeadphoneEarpadMaterial"
+      },
+      "arity": "list",
+      "isUnique": false
+    },
+    {
+      "stepType": "CreateField",
+      "model": "Headphone",
+      "name": "carryingCase",
+      "type": {
+        "Base": "Boolean"
+      },
+      "arity": "optional",
+      "isUnique": false
+    },
+    {
+      "stepType": "CreateField",
+      "model": "Headphone",
+      "name": "tunability",
+      "type": {
+        "Base": "Int"
+      },
+      "arity": "optional",
+      "isUnique": false
+    },
+    {
+      "stepType": "CreateField",
+      "model": "Headphone",
+      "name": "portability",
+      "type": {
+        "Base": "Int"
+      },
+      "arity": "optional",
+      "isUnique": false
+    },
+    {
+      "stepType": "CreateField",
+      "model": "Headphone",
+      "name": "serviceability",
+      "type": {
+        "Base": "Int"
+      },
+      "arity": "optional",
+      "isUnique": false
+    },
+    {
+      "stepType": "CreateField",
+      "model": "Headphone",
+      "name": "reviews",
+      "type": {
+        "Relation": {
+          "to": "HeadphoneReview",
+          "to_fields": [],
+          "name": "HeadphoneToHeadphoneReview",
+          "on_delete": "None"
+        }
+      },
+      "arity": "list",
+      "isUnique": false
+    },
+    {
+      "stepType": "CreateField",
+      "model": "HeadphoneReview",
+      "name": "id",
+      "type": {
+        "Base": "String"
+      },
+      "arity": "required",
+      "isUnique": false,
+      "id": {
+        "strategy": "Auto",
+        "sequence": null
+      },
+      "default": {
+        "Expression": [
+          "cuid",
+          "String",
+          []
+        ]
+      }
+    },
+    {
+      "stepType": "CreateField",
+      "model": "HeadphoneReview",
+      "name": "createdAt",
+      "type": {
+        "Base": "DateTime"
+      },
+      "arity": "required",
+      "isUnique": false,
+      "default": {
+        "Expression": [
+          "now",
+          "DateTime",
+          []
+        ]
+      }
+    },
+    {
+      "stepType": "CreateField",
+      "model": "HeadphoneReview",
+      "name": "updatedAt",
+      "type": {
+        "Base": "DateTime"
+      },
+      "arity": "required",
+      "isUnique": false
+    },
+    {
+      "stepType": "CreateField",
+      "model": "HeadphoneReview",
+      "name": "headphone",
+      "type": {
+        "Relation": {
+          "to": "Headphone",
+          "to_fields": [
+            "id"
+          ],
+          "name": "HeadphoneToHeadphoneReview",
+          "on_delete": "None"
+        }
+      },
+      "arity": "required",
+      "isUnique": false
+    },
+    {
+      "stepType": "CreateField",
+      "model": "HeadphoneReview",
+      "name": "credibility",
+      "type": {
+        "Base": "Int"
+      },
+      "arity": "required",
+      "isUnique": false,
+      "default": {
+        "Int": 5
+      }
+    },
+    {
+      "stepType": "CreateField",
+      "model": "HeadphoneReview",
+      "name": "url",
+      "type": {
+        "Base": "String"
+      },
+      "arity": "optional",
+      "isUnique": false
+    },
+    {
+      "stepType": "CreateField",
+      "model": "HeadphoneReview",
+      "name": "reviewer",
+      "type": {
+        "Base": "String"
+      },
+      "arity": "optional",
+      "isUnique": false
+    },
+    {
+      "stepType": "CreateField",
+      "model": "HeadphoneReview",
+      "name": "priceVsPerf",
+      "type": {
+        "Base": "Int"
+      },
+      "arity": "optional",
+      "isUnique": false
+    },
+    {
+      "stepType": "CreateField",
+      "model": "HeadphoneReview",
+      "name": "priceVsPerfUrl",
+      "type": {
+        "Base": "String"
+      },
+      "arity": "optional",
+      "isUnique": false
+    },
+    {
+      "stepType": "CreateField",
+      "model": "HeadphoneReview",
+      "name": "aesthetics",
+      "type": {
+        "Base": "Int"
+      },
+      "arity": "optional",
+      "isUnique": false
+    },
+    {
+      "stepType": "CreateField",
+      "model": "HeadphoneReview",
+      "name": "aestheticsUrl",
+      "type": {
+        "Base": "String"
+      },
+      "arity": "optional",
+      "isUnique": false
+    },
+    {
+      "stepType": "CreateField",
+      "model": "HeadphoneReview",
+      "name": "soundstage",
+      "type": {
+        "Base": "Int"
+      },
+      "arity": "optional",
+      "isUnique": false
+    },
+    {
+      "stepType": "CreateField",
+      "model": "HeadphoneReview",
+      "name": "soundstageDepth",
+      "type": {
+        "Base": "Int"
+      },
+      "arity": "optional",
+      "isUnique": false
+    },
+    {
+      "stepType": "CreateField",
+      "model": "HeadphoneReview",
+      "name": "soundstageWidth",
+      "type": {
+        "Base": "Int"
+      },
+      "arity": "optional",
+      "isUnique": false
+    },
+    {
+      "stepType": "CreateField",
+      "model": "HeadphoneReview",
+      "name": "soundstageHeight",
+      "type": {
+        "Base": "Int"
+      },
+      "arity": "optional",
+      "isUnique": false
+    },
+    {
+      "stepType": "CreateField",
+      "model": "HeadphoneReview",
+      "name": "soundstageUrl",
+      "type": {
+        "Base": "String"
+      },
+      "arity": "optional",
+      "isUnique": false
+    },
+    {
+      "stepType": "CreateField",
+      "model": "HeadphoneReview",
+      "name": "balanced",
+      "type": {
+        "Base": "Int"
+      },
+      "arity": "optional",
+      "isUnique": false
+    },
+    {
+      "stepType": "CreateField",
+      "model": "HeadphoneReview",
+      "name": "balancedUrl",
+      "type": {
+        "Base": "String"
+      },
+      "arity": "optional",
+      "isUnique": false
+    },
+    {
+      "stepType": "CreateField",
+      "model": "HeadphoneReview",
+      "name": "imaging",
+      "type": {
+        "Base": "Int"
+      },
+      "arity": "optional",
+      "isUnique": false
+    },
+    {
+      "stepType": "CreateField",
+      "model": "HeadphoneReview",
+      "name": "imagingUrl",
+      "type": {
+        "Base": "String"
+      },
+      "arity": "optional",
+      "isUnique": false
+    },
+    {
+      "stepType": "CreateField",
+      "model": "HeadphoneReview",
+      "name": "separation",
+      "type": {
+        "Base": "Int"
+      },
+      "arity": "optional",
+      "isUnique": false
+    },
+    {
+      "stepType": "CreateField",
+      "model": "HeadphoneReview",
+      "name": "separationUrl",
+      "type": {
+        "Base": "String"
+      },
+      "arity": "optional",
+      "isUnique": false
+    },
+    {
+      "stepType": "CreateField",
+      "model": "HeadphoneReview",
+      "name": "bassQty",
+      "type": {
+        "Base": "Int"
+      },
+      "arity": "optional",
+      "isUnique": false
+    },
+    {
+      "stepType": "CreateField",
+      "model": "HeadphoneReview",
+      "name": "bassClarity",
+      "type": {
+        "Base": "Int"
+      },
+      "arity": "optional",
+      "isUnique": false
+    },
+    {
+      "stepType": "CreateField",
+      "model": "HeadphoneReview",
+      "name": "bassExtension",
+      "type": {
+        "Base": "Int"
+      },
+      "arity": "optional",
+      "isUnique": false
+    },
+    {
+      "stepType": "CreateField",
+      "model": "HeadphoneReview",
+      "name": "bassTightness",
+      "type": {
+        "Base": "Int"
+      },
+      "arity": "optional",
+      "isUnique": false
+    },
+    {
+      "stepType": "CreateField",
+      "model": "HeadphoneReview",
+      "name": "bassImpact",
+      "type": {
+        "Base": "Int"
+      },
+      "arity": "optional",
+      "isUnique": false
+    },
+    {
+      "stepType": "CreateField",
+      "model": "HeadphoneReview",
+      "name": "bassUrl",
+      "type": {
+        "Base": "String"
+      },
+      "arity": "optional",
+      "isUnique": false
+    },
+    {
+      "stepType": "CreateField",
+      "model": "HeadphoneReview",
+      "name": "midrange",
+      "type": {
+        "Base": "Int"
+      },
+      "arity": "optional",
+      "isUnique": false
+    },
+    {
+      "stepType": "CreateField",
+      "model": "HeadphoneReview",
+      "name": "midrangeUrl",
+      "type": {
+        "Base": "String"
+      },
+      "arity": "optional",
+      "isUnique": false
+    },
+    {
+      "stepType": "CreateField",
+      "model": "HeadphoneReview",
+      "name": "treble",
+      "type": {
+        "Base": "Int"
+      },
+      "arity": "optional",
+      "isUnique": false
+    },
+    {
+      "stepType": "CreateField",
+      "model": "HeadphoneReview",
+      "name": "trebleExtension",
+      "type": {
+        "Base": "Int"
+      },
+      "arity": "optional",
+      "isUnique": false
+    },
+    {
+      "stepType": "CreateField",
+      "model": "HeadphoneReview",
+      "name": "trebleUrl",
+      "type": {
+        "Base": "String"
+      },
+      "arity": "optional",
+      "isUnique": false
+    },
+    {
+      "stepType": "CreateField",
+      "model": "HeadphoneReview",
+      "name": "distortion",
+      "type": {
+        "Base": "Int"
+      },
+      "arity": "optional",
+      "isUnique": false
+    },
+    {
+      "stepType": "CreateField",
+      "model": "HeadphoneReview",
+      "name": "distortionUrl",
+      "type": {
+        "Base": "String"
+      },
+      "arity": "optional",
+      "isUnique": false
+    },
+    {
+      "stepType": "CreateField",
+      "model": "HeadphoneReview",
+      "name": "dynamics",
+      "type": {
+        "Base": "Int"
+      },
+      "arity": "optional",
+      "isUnique": false
+    },
+    {
+      "stepType": "CreateField",
+      "model": "HeadphoneReview",
+      "name": "dynamicsUrl",
+      "type": {
+        "Base": "String"
+      },
+      "arity": "optional",
+      "isUnique": false
+    },
+    {
+      "stepType": "CreateField",
+      "model": "HeadphoneReview",
+      "name": "detail",
+      "type": {
+        "Base": "Int"
+      },
+      "arity": "optional",
+      "isUnique": false
+    },
+    {
+      "stepType": "CreateField",
+      "model": "HeadphoneReview",
+      "name": "detailUrl",
+      "type": {
+        "Base": "String"
+      },
+      "arity": "optional",
+      "isUnique": false
+    },
+    {
+      "stepType": "CreateField",
+      "model": "HeadphoneReview",
+      "name": "microDetail",
+      "type": {
+        "Base": "Int"
+      },
+      "arity": "optional",
+      "isUnique": false
+    },
+    {
+      "stepType": "CreateField",
+      "model": "HeadphoneReview",
+      "name": "microDetailUrl",
+      "type": {
+        "Base": "String"
+      },
+      "arity": "optional",
+      "isUnique": false
+    },
+    {
+      "stepType": "CreateField",
+      "model": "HeadphoneReview",
+      "name": "naturalness",
+      "type": {
+        "Base": "Int"
+      },
+      "arity": "optional",
+      "isUnique": false
+    },
+    {
+      "stepType": "CreateField",
+      "model": "HeadphoneReview",
+      "name": "naturalnessUrl",
+      "type": {
+        "Base": "String"
+      },
+      "arity": "optional",
+      "isUnique": false
+    },
+    {
+      "stepType": "CreateField",
+      "model": "HeadphoneReview",
+      "name": "smoothess",
+      "type": {
+        "Base": "Int"
+      },
+      "arity": "optional",
+      "isUnique": false
+    },
+    {
+      "stepType": "CreateField",
+      "model": "HeadphoneReview",
+      "name": "smoothessUrl",
+      "type": {
+        "Base": "String"
+      },
+      "arity": "optional",
+      "isUnique": false
+    },
+    {
+      "stepType": "CreateField",
+      "model": "HeadphoneReview",
+      "name": "forwardness",
+      "type": {
+        "Base": "Int"
+      },
+      "arity": "optional",
+      "isUnique": false
+    },
+    {
+      "stepType": "CreateField",
+      "model": "HeadphoneReview",
+      "name": "forwardnessUrl",
+      "type": {
+        "Base": "String"
+      },
+      "arity": "optional",
+      "isUnique": false
+    },
+    {
+      "stepType": "CreateField",
+      "model": "HeadphoneReview",
+      "name": "speed",
+      "type": {
+        "Base": "Int"
+      },
+      "arity": "optional",
+      "isUnique": false
+    },
+    {
+      "stepType": "CreateField",
+      "model": "HeadphoneReview",
+      "name": "speedUrl",
+      "type": {
+        "Base": "String"
+      },
+      "arity": "optional",
+      "isUnique": false
+    },
+    {
+      "stepType": "CreateField",
+      "model": "HeadphoneReview",
+      "name": "warmth",
+      "type": {
+        "Base": "Int"
+      },
+      "arity": "optional",
+      "isUnique": false
+    },
+    {
+      "stepType": "CreateField",
+      "model": "HeadphoneReview",
+      "name": "warmthUrl",
+      "type": {
+        "Base": "String"
+      },
+      "arity": "optional",
+      "isUnique": false
+    },
+    {
+      "stepType": "CreateField",
+      "model": "HeadphoneReview",
+      "name": "brigthness",
+      "type": {
+        "Base": "Int"
+      },
+      "arity": "optional",
+      "isUnique": false
+    },
+    {
+      "stepType": "CreateField",
+      "model": "HeadphoneReview",
+      "name": "brigthnessUrl",
+      "type": {
+        "Base": "String"
+      },
+      "arity": "optional",
+      "isUnique": false
+    },
+    {
+      "stepType": "CreateField",
+      "model": "HeadphoneReview",
+      "name": "analytical",
+      "type": {
+        "Base": "Int"
+      },
+      "arity": "optional",
+      "isUnique": false
+    },
+    {
+      "stepType": "CreateField",
+      "model": "HeadphoneReview",
+      "name": "analyticalUrl",
+      "type": {
+        "Base": "String"
+      },
+      "arity": "optional",
+      "isUnique": false
+    },
+    {
+      "stepType": "CreateField",
+      "model": "HeadphoneReview",
+      "name": "transparency",
+      "type": {
+        "Base": "Int"
+      },
+      "arity": "optional",
+      "isUnique": false
+    },
+    {
+      "stepType": "CreateField",
+      "model": "HeadphoneReview",
+      "name": "transparencyUrl",
+      "type": {
+        "Base": "String"
+      },
+      "arity": "optional",
+      "isUnique": false
+    },
+    {
+      "stepType": "CreateField",
+      "model": "HeadphoneReview",
+      "name": "sibilance",
+      "type": {
+        "Base": "Int"
+      },
+      "arity": "optional",
+      "isUnique": false
+    },
+    {
+      "stepType": "CreateField",
+      "model": "HeadphoneReview",
+      "name": "sibilanceUrl",
+      "type": {
+        "Base": "String"
+      },
+      "arity": "optional",
+      "isUnique": false
+    },
+    {
+      "stepType": "CreateField",
+      "model": "HeadphoneReview",
+      "name": "nonFatiguing",
+      "type": {
+        "Base": "Int"
+      },
+      "arity": "optional",
+      "isUnique": false
+    },
+    {
+      "stepType": "CreateField",
+      "model": "HeadphoneReview",
+      "name": "nonFatiguingUrl",
+      "type": {
+        "Base": "String"
+      },
+      "arity": "optional",
+      "isUnique": false
+    },
+    {
+      "stepType": "CreateField",
+      "model": "HeadphoneReview",
+      "name": "build",
+      "type": {
+        "Base": "Int"
+      },
+      "arity": "optional",
+      "isUnique": false
+    },
+    {
+      "stepType": "CreateField",
+      "model": "HeadphoneReview",
+      "name": "buildUrl",
+      "type": {
+        "Base": "String"
+      },
+      "arity": "optional",
+      "isUnique": false
+    },
+    {
+      "stepType": "CreateField",
+      "model": "HeadphoneReview",
+      "name": "comfort",
+      "type": {
+        "Base": "Int"
+      },
+      "arity": "optional",
+      "isUnique": false
+    },
+    {
+      "stepType": "CreateField",
+      "model": "HeadphoneReview",
+      "name": "comfortUrl",
+      "type": {
+        "Base": "String"
+      },
+      "arity": "optional",
+      "isUnique": false
+    },
+    {
+      "stepType": "CreateField",
+      "model": "HeadphoneReview",
+      "name": "isolation",
+      "type": {
+        "Base": "Int"
+      },
+      "arity": "optional",
+      "isUnique": false
+    },
+    {
+      "stepType": "CreateField",
+      "model": "HeadphoneReview",
+      "name": "isolationUrl",
+      "type": {
+        "Base": "String"
+      },
+      "arity": "optional",
+      "isUnique": false
+    },
+    {
+      "stepType": "CreateField",
+      "model": "HeadphoneReview",
+      "name": "leakage",
+      "type": {
+        "Base": "Int"
+      },
+      "arity": "optional",
+      "isUnique": false
+    },
+    {
+      "stepType": "CreateField",
+      "model": "HeadphoneReview",
+      "name": "leakageUrl",
+      "type": {
+        "Base": "String"
+      },
+      "arity": "optional",
+      "isUnique": false
+    },
+    {
+      "stepType": "CreateField",
+      "model": "HeadphoneReview",
+      "name": "matchability",
+      "type": {
+        "Base": "Int"
+      },
+      "arity": "optional",
+      "isUnique": false
+    },
+    {
+      "stepType": "CreateField",
+      "model": "HeadphoneReview",
+      "name": "matchabilityUrl",
+      "type": {
+        "Base": "String"
+      },
+      "arity": "optional",
+      "isUnique": false
+    },
+    {
+      "stepType": "CreateField",
+      "model": "HeadphoneReview",
+      "name": "breathability",
+      "type": {
+        "Base": "Int"
+      },
+      "arity": "optional",
+      "isUnique": false
+    },
+    {
+      "stepType": "CreateField",
+      "model": "HeadphoneReview",
+      "name": "breathabilityUrl",
+      "type": {
+        "Base": "String"
+      },
+      "arity": "optional",
+      "isUnique": false
+    },
+    {
+      "stepType": "DeleteField",
+      "model": "User",
+      "name": "posts"
+    },
+    {
+      "stepType": "CreateEnum",
+      "name": "HeadphoneEarpadMaterial",
+      "values": [
+        "Leather",
+        "PerfLeather",
+        "Pleather",
+        "Suede",
+        "Fabric"
+      ]
+    },
+    {
+      "stepType": "CreateEnum",
+      "name": "HeadphoneCableTerm",
+      "values": [
+        "TRRS_2_5",
+        "TRS_3_5",
+        "TRRS_4_4",
+        "TRS_6_35",
+        "MMCX",
+        "TWO_PIN",
+        "XLR",
+        "Proprietary"
+      ]
+    },
+    {
+      "stepType": "CreateEnum",
+      "name": "HeadphoneEnclosure",
+      "values": [
+        "OPEN_BACK",
+        "CLOSED_BACK",
+        "SEMI_OPEN"
+      ]
+    },
+    {
+      "stepType": "CreateEnum",
+      "name": "HeadphoneDriverType",
+      "values": [
+        "DYNAMIC",
+        "PLANAR",
+        "ELECTROSTATIC",
+        "ISODYNAMIC",
+        "BA",
+        "HYBRID"
+      ]
+    },
+    {
+      "stepType": "CreateEnum",
+      "name": "HeadphoneDriverMaterial",
+      "values": [
+        "ALUMINIUM",
+        "ALUMINIUM_MAGNESIUM",
+        "PAPER",
+        "MYLAR",
+        "BIOCELLULOSE",
+        "BERYLLIUM"
+      ]
+    },
+    {
+      "stepType": "CreateEnum",
+      "name": "HeadphoneType",
+      "values": [
+        "OVER_EAR",
+        "ON_EAR",
+        "IN_EAR"
+      ]
+    }
+  ]
+}
