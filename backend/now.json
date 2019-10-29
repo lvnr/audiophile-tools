@@ -1,0 +1,22 @@
+{
+  "name": "audiophile-tools-prisma",
+  "version": 2,
+  "env": {
+    "POSTGRESQL_URL": "@postgresql_url"
+  },
+  "builds": [
+    {
+      "src": "src/server.ts",
+      "use": "@now/node@canary",
+      "config": {
+        "maxLambdaSize": "25mb"
+      }
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "src/server.ts"
+    }
+  ]
+}
