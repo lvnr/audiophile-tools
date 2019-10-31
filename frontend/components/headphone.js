@@ -19,9 +19,22 @@ const Headphone = ({ headphone }) => {
         </h5>
 
         <div className="metric-body">
+
           <div className="metric">
-            <div className="value">0%</div>
-            <span className="label">match</span>
+            <div className="value-match">
+               {0}
+              <span>%</span>
+            </div>
+
+            <div className='label-icon'>
+              <div>
+                <span className="label">match</span>
+              </div>
+
+              <div className='dot'>
+                 <span className='icon'>?</span>
+              </div>
+            </div>
           </div>
 
           <div className="metric">
@@ -46,7 +59,9 @@ const Headphone = ({ headphone }) => {
             </div>
             <span className="label">price</span>
           </div>
+
         </div>
+
       </div>
 
       <style jsx>{`
