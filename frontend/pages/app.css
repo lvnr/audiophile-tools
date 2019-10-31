@@ -1,0 +1,127 @@
+
+.categories {
+  width: 500px;
+  height: 40px;
+  padding: 30px 0 34px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+}
+
+.categories a {
+  padding-left: 40px;
+  color: rgb(150, 150, 150);
+  text-decoration: none;
+  line-height: 17px;
+  text-transform: uppercase;
+  transition-property: color;
+  transition-duration: 300ms;
+}
+
+.categories a:hover {
+  color: #000000;
+}
+
+/* content */
+
+.content {
+  width: 1255px;
+  display: flex;
+}
+
+.results {
+  height: 800px;
+  width: 900px;
+  margin-left: 20px;
+}
+
+.results-header {
+  width: 900px;
+  height: 40px;
+  margin-bottom: 16px;
+  border: 1px solid  rgba(235, 235, 235, 0.904);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.results-header h6 {
+  line-height: 17px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+/* product */
+
+
+.results h5 {
+}
+
+.photo {
+  height: 200px;
+  width: 200px;
+  margin: 0;
+  border-right: 1px solid rgba(235, 235, 235, 0.904);
+  display: inline-block;
+}
+
+.taste-picker {
+  width: 275px;
+  height: 800px;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid rgba(235, 235, 235, 0.904);
+  border-radius: 12px;
+}
+
+.pick-header {
+  height: 40px;
+  width: 277px;
+  border-bottom: 1px solid rgba(235, 235, 235, 0.904);
+  line-height: 17px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+}
+
+.taste-picker .filter-section > span {
+  height: 40px;
+  width: 277px;
+  display: flex;
+  justify-content: flex-start;
+  padding-left: 10px;
+  padding-top: 10px;
+  line-height: 17px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin: 0;
+  font-weight: 500;
+  font-size: .8em;
+} 
+
+.soundstage {
+  border-bottom: 1px solid rgba(235, 235, 235, 0.904);
+}
+
+/* logo  */
+
+svg {
+  padding-top: 30px;
+}
+
+
+#driver {
+  height: 25px;
+  width: 260px;
+  padding-bottom: 0;
+  border-bottom: none;
+  display: flex;
+  justify-content: flex-start;
+  padding-left: 12px;
+  line-height: 15px;
+}
