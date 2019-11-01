@@ -78,7 +78,7 @@
 .dot {
   height: 14px;
   width: 14px;
-  background-color:#ECECEC;;;
+  background-color: #ECECEC;
   border-radius: 50%;
   margin-left: 5px;
   display: flex;
@@ -101,4 +101,57 @@
   display: flex;
   justify-content: center;
   color: #000000;
+}
+
+/* tooltip */
+
+.tooltip {
+  border-radius: 10px;
+  padding: 10px 15px;
+  position: relative;
+  margin: 15px;
+  text-align: center;
+}
+
+.tooltip::after {
+  width: 100px;
+  border-radius: 10px;
+  background-color: rgba(189, 189, 189);
+  color: #FFFFFF;
+  display: none;
+  padding: 10px 15px;
+  text-align: center;
+  z-index: 2;
+}
+
+.tooltip.bottom::after {
+  content: 'Lorem ipsum dolor sit amet';
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%, calc(18% + 10px));
+}
+
+.tooltip:hover::after {
+  display: block;
+}
+
+.tooltip.bottom::before {
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%, calc(100% + 5px)) rotate(45deg);
+}
+
+.tooltip::before {
+  background-color: rgba(189, 189, 189);
+  content: ' ';
+  display: none;
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  border-radius: 0px 0px 90px 0px;
+  z-index: 1;
+}
+
+.tooltip:hover::before {
+  display: block;
 }

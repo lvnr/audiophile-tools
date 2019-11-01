@@ -51,7 +51,7 @@ const Headphone = ({ headphone }) => {
               </div>
 
               <div className='dot'>
-                 <span className='icon'>?</span>
+                <span className='icon tooltip bottom'>?</span>
               </div>
             </div>
           </div>
