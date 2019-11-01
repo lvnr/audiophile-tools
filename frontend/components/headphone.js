@@ -1,4 +1,5 @@
 import React from 'react'
+import { mean } from 'simple-statistics'
 
 import './headphone.css'
 
@@ -6,6 +7,12 @@ const Headphone = ({ headphone }) => {
   const imageStyle = {
     backgroundImage: `url("${headphone.images[0] || ''}")`
   }
+
+  // let match, SQ, comfort, priceVsPerf = []
+
+  const priceVsPerf = headphone.reviews.map(review => review.priceVsPerf || undefined)
+
+  mean(priceVsPerf)
 
   return (
     <div className="product">

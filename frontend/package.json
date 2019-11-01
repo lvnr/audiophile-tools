@@ -19,7 +19,8 @@
     "rc-slider": "^8.7.1",
     "react": "^16.11.0",
     "react-dom": "^16.11.0",
-    "react-select": "^3.0.8"
+    "react-select": "^3.0.8",
+    "simple-statistics": "^7.0.5"
   },
   "devDependencies": {
     "@types/node": "^12.11.7",

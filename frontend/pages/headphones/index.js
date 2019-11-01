@@ -18,6 +18,46 @@ const QUERY = gql`
       company {
         name
       }
+      reviews {
+        id
+        reviewer
+        url
+        credibility
+        trebleExtension
+        priceVsPerf
+        aesthetics
+        soundstage
+        imaging
+        balanced
+        bassQty
+        bassClarity
+        bassImpact
+        bassExtension
+        bassTightness
+        midrange
+        treble
+        smoothess
+        naturalness
+        detail
+        distortion
+        microDetail
+        warmth
+        sibilance
+        speed
+        nonFatiguing
+        noBrainer
+        dynamics
+        brigthness
+        matchability
+        analytical
+        sourceForgiving
+        isolation
+        leakage
+        transparency
+        forwardness
+        build
+        comfort
+      }
     }
   }
 `

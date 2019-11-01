@@ -1,9 +1,59 @@
-.rc-slider {
-  margin: 5%;
-  width: 90%;
+.rc-slider-handle {
+  width: 20px;
+  height: 20px;
 }
 
-/* chackbox  */
+.rc-slider-step,
+.rc-slider-track,
+.rc-slider-rail {
+  height: 10px;
+}
+
+.rc-slider-track {
+  background: linear-gradient(90deg, rgba(40,100,255,1) 0%, rgba(255,15,15,1) 100%);
+}
+
+.taste-picker {
+  width: 275px;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid rgba(235, 235, 235, 0.904);
+  border-radius: 12px;
+  margin-bottom: 100px;
+}
+
+.pick-header {
+  height: 40px;
+  width: 277px;
+  border-bottom: 1px solid rgba(235, 235, 235, 0.904);
+  line-height: 17px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+}
+
+.filter-section {
+  border-bottom: 1px solid rgba(235, 235, 235, 0.904);
+  padding: 20px 30px;
+}
+
+.taste-picker .filter-section .label {
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-weight: 300;
+  font-size: .8em;
+  margin-bottom: 5px;
+  display: flex;
+  justify-content: space-between;
+} 
+
+.taste-picker .filter-section .label > span {
+  color: #999;
+  font-weight: 500;
+}
 
 .round {
   position: relative;
