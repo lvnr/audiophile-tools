@@ -18,6 +18,13 @@ const labels = {
   }
 }
 
+const fieldDisambiguation = {
+  bassPower: 'bass (power)',  
+  bassClarity: 'bass (clarity)', 
+  bassSpeed: 'bass (speed)',  
+  bassExtension: 'bass (extension)',
+}
+
 function Picker() {
   
     const [picker, setPicker] = useState({
@@ -41,7 +48,7 @@ function Picker() {
       speed: null,      
       warmth: null,    
       brightness: null, 
-      sibilance: null  
+      sibilance: null,
     })
     
     const onChange = (fieldName, fieldValue) => {
@@ -53,7 +60,7 @@ function Picker() {
       const label = labels[field] && labels[field][value] ? labels[field][value] : picker[field]
       return (
         <div className="filter-section" key={i}>
-          <div className="label">{field} <span>{label}</span></div>
+          <div className="label">{fieldDisambiguation[field] || field} <span>{label}</span></div>
           <Slider onChange={(val) => onChange(field, val)} min={0} max={10} />
         </div>
       )

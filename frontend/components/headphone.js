@@ -8,11 +8,23 @@ const Headphone = ({ headphone }) => {
     backgroundImage: `url("${headphone.images[0] || ''}")`
   }
 
-  // let match, SQ, comfort, priceVsPerf = []
+  const aggregatedRatings = {}
+  const meanRatings = {}
 
-  const priceVsPerf = headphone.reviews.map(review => review.priceVsPerf || undefined)
+  headphone.reviews.map(review => {
+    Object.entries(review).map(([field, value]) => {
+      if (field && value && typeof value === 'number') {
+        if (aggregatedRatings[field] !== undefined)
+          aggregatedRatings[field].push(value)
+        else
+          aggregatedRatings[field] = [value]
+      }
+    })
+  })
 
-  mean(priceVsPerf)
+  Object.entries(aggregatedRatings).map(([field, ratings]) => meanRatings[field] = mean(ratings).toFixed(1))
+
+  console.log(meanRatings);
 
   return (
     <div className="product">
@@ -27,8 +39,8 @@ const Headphone = ({ headphone }) => {
 
         <div className="metric-body">
 
-          <div className="metric">
-            <div className="value-match">
+          <div className="metric match">
+            <div className="value match">
                {0}
               <span>%</span>
             </div>
@@ -45,21 +57,21 @@ const Headphone = ({ headphone }) => {
           </div>
 
           <div className="metric">
-            <div className="value">0%</div>
+            <div className="value">0</div>
             <span className="label">sq</span>
           </div>
 
           <div className="metric">
-            <div className="value">0%</div>
+            <div className="value">0</div>
             <span className="label">comfort</span>
           </div>
 
           <div className="metric">
-            <div className="value">0%</div>
+            <div className="value">{meanRatings.priceVsPerf || '–'}</div>
             <span className="label">price vs perf.</span>
           </div>
 
-          <div className="metric">
+          <div className="metric price">
             <div className="value">
               <span>$</span>
               {headphone.price}

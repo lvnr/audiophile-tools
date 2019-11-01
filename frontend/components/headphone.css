@@ -39,17 +39,25 @@
   justify-content: center;
   align-items: center;
   flex: 1;
-  top: 81px;
-  margin: 15px;
+  min-width: 100px;
+}
+
+.metric.match {
+  flex: 2;
+}
+
+.metric.price {
+  flex: 3;
 }
 
 .metric span {
   color:  #BDBDBD;
+  text-align: center;
 }
 
 .metric .value {
   font-family: neue-haas-grotesk-display;
-  font-size: 64px;
+  font-size: 54px;
   line-height: 71px;
   display: flex;
   align-items: center;
@@ -57,10 +65,7 @@
   text-transform: uppercase;
 }
 
-.value-match {
-  font-family: neue-haas-grotesk-display;
-  font-size: 64px;
-  line-height: 77px;
+.value.match {
   font-weight: 700;
   color: #F2C94C;
 }
