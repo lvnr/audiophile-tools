@@ -77,6 +77,8 @@ model HeadphoneReview {
   credibility Int       @default(5)
   url         String?
   reviewer    String?
+  video       Boolean?
+  notes       String?
 
   priceVsPerf       Int?
   priceVsPerfUrl    String?

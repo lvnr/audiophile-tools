@@ -35,6 +35,8 @@ const HeadphoneReview = objectType({
     t.model.updatedAt()
     t.model.reviewer()
     t.model.url()
+    t.model.video()
+    t.model.notes()
     t.model.headphone()
     t.model.credibility()
     t.model.priceVsPerf()
