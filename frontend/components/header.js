@@ -1,5 +1,6 @@
 import React from 'react'
 import Link from 'next/link'
+import './header.css'
 
 const links = [
   { href: '/headphones', label: '🎧 Headphones' },

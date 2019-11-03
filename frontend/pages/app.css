@@ -37,7 +37,7 @@
 }
 
 .results-header {
-  width: 900px;
+  /* width: 900px; */
   height: 40px;
   margin-bottom: 16px;
   border: 1px solid  rgba(235, 235, 235, 0.904);
@@ -61,4 +61,16 @@
   margin: 0 ;
   border-right: 1px solid rgba(235, 235, 235, 0.904);
   display: inline-block;
+}
+
+@media only screen and (max-width: 600px){
+  .results-headers {
+    width: 200px;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .photo {
+    border-right: 0;
+  }
 }

@@ -1,0 +1,15 @@
+
+@media only screen and (max-width: 600px) {
+    .jsx-3601981170 {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .jsx-3601981170>ul.jsx-3601981170{
+        width: 140px;
+    }
+}

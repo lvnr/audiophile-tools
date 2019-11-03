@@ -155,3 +155,66 @@
 .tooltip:hover::before {
   display: block;
 }
+
+
+@media only screen and (max-width: 600px){
+  .product {
+    width: 275px;
+    height: 900px;
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+@media only screen and (max-width: 600px){
+  .metric-body {
+    width: 200px;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+@media only screen and (max-width: 600px){
+  .metric.match {
+    width: 200px;
+    height: 900px;
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+@media only screen and (max-width: 600px){
+  .results {
+    width: 200px;
+    height: 900px;
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+@media only screen and (max-width: 600px){
+  .results-header {
+    width: 275px;
+  }
+}
+
+@media only screen and (max-width: 600px){
+  .detail {
+    width: 200px;
+    height: 900px;
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+/* main  */
+
+@media only screen and (max-width: 600px) {
+  .jsx-456205861 {
+      display: flex;
+      flex-direction: column;
+  }
+}
+
+ 
