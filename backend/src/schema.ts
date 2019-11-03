@@ -37,6 +37,7 @@ const HeadphoneReview = objectType({
     t.model.url()
     t.model.video()
     t.model.notes()
+    t.model.takeaways()
     t.model.headphone()
     t.model.credibility()
     t.model.priceVsPerf()
@@ -124,6 +125,7 @@ const Headphone = objectType({
     t.model.images()
     t.model.company({ type: 'Company' })
     t.model.url()
+    t.model.slug()
     t.model.amazonUrl()
     t.model.category()
     t.model.enclosure()
@@ -197,29 +199,31 @@ const Mutation = objectType({
   name: 'Mutation',
   definition(t) {
     t.crud.createOneUser({ alias: 'signupUser' })
-    t.crud.upsertOneCompany()
+    t.crud.createOneHeadphone()
+    t.crud.createOneCompany()
+    t.crud.updateOneCompany()
     t.crud.deleteOneHeadphone()
     t.crud.upsertOneHeadphone()
     t.crud.updateOneHeadphone()
     t.crud.upsertOneHeadphoneReview()
 
-    t.field('createHeadphone', {
-      type: 'Headphone',
-      args: {
-        model: stringArg({ nullable: false }),
-        companyName: stringArg({ nullable: false }),
-      },
-      resolve: (_, { model, companyName }, ctx) => {
-        return ctx.photon.headphones.create({
-          data: {
-            model,
-            company: {
-              connect: { name: companyName },
-            },
-          },
-        })
-      },
-    })
+    // t.field('createHeadphone', {
+    //   type: 'Headphone',
+    //   args: {
+    //     model: stringArg({ nullable: false }),
+    //     companyName: stringArg({ nullable: false }),
+    //   },
+    //   resolve: (_, { model, companyName }, ctx) => {
+    //     return ctx.photon.headphones.create({
+    //       data: {
+    //         model,
+    //         company: {
+    //           connect: { name: companyName },
+    //         },
+    //       },
+    //     })
+    //   },
+    // })
 
     t.crud.createOneHeadphoneReview({ alias: 'createHeadphoneReview' })
 

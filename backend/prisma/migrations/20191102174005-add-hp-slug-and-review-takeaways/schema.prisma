@@ -4,7 +4,7 @@ generator photon {
 
 datasource db {
   provider = "postgresql"
-  url      = "postgresql://audiophile:LevAr8523*@audiophile-tools.clqkmkirkmxi.us-east-1.rds.amazonaws.com:5432/prisma"
+  url = "***"
 }
 
 
@@ -29,7 +29,7 @@ model Headphone {
   id          String    @default(cuid()) @id
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @updatedAt
-  slug        String    @unique
+  slug        String    
   model       String    @unique
   company     Company
   url         String?
@@ -45,7 +45,7 @@ model Headphone {
   driverType  HeadphoneDriverType?
   driverMaterial  HeadphoneDriverMaterial?
   price       Float? // USD
-  weight      Float? // g
+  weigth      Float? // g
   impedance   Float? // ohm
   sensitivity Float? // dB
   THD90       Float? // % @ 1kHz / 90dB SPL
@@ -65,7 +65,6 @@ model Headphone {
   tunability      Int?
   portability     Int?
   serviceability  Int?
-  gaming          Boolean?
 
   reviews         HeadphoneReview[]
 }
