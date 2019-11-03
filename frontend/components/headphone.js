@@ -3,6 +3,16 @@ import { mean } from 'simple-statistics'
 
 import './headphone.css'
 
+const toFixed1 = (num) => {
+  if (typeof num === 'number') {
+    num = num.toFixed(1)
+  }
+
+  return typeof num === 'string' && num.substring(num.length - 2, num.length) === '.0'
+    ? num.substring(0, num.length - 2)
+    : num
+}
+
 const Headphone = ({ headphone }) => {
   const imageStyle = {
     backgroundImage: `url("${headphone.images[0] || ''}")`
@@ -10,6 +20,21 @@ const Headphone = ({ headphone }) => {
 
   const aggregatedRatings = {}
   const meanRatings = {}
+  const SQweights = {
+    midrange:     .15,
+    treble:       .10,
+    naturalness:  .07,
+    distortion:   .04,
+    imaging:      .11,
+    soundstage:   .11,
+    dynamics:     .08,
+    speed:        .07,
+    detail:       .07,
+    bassQty:      .05,
+    bassClarity:  .05,
+    bassExtension:.05,
+    bassImpact:   .05,
+  }
 
   headphone.reviews.map(review => {
     Object.entries(review).map(([field, value]) => {
@@ -22,9 +47,19 @@ const Headphone = ({ headphone }) => {
     })
   })
 
-  Object.entries(aggregatedRatings).map(([field, ratings]) => meanRatings[field] = mean(ratings).toFixed(1))
+  Object.entries(aggregatedRatings).map(([field, ratings]) => meanRatings[field] = mean(ratings))
 
-  console.log(meanRatings);
+  const SQreducer = (accumulator, [field, weight]) => {
+    const mean = meanRatings[field]
+
+    if (mean) {
+      return accumulator + (mean * weight)
+    }
+
+    return accumulator + (meanRatings.priceVsPerf || 5) * weight
+  }
+
+  const SQ = Object.entries(SQweights).reduce(SQreducer, 0)
 
   return (
     <div className="product">
@@ -57,17 +92,17 @@ const Headphone = ({ headphone }) => {
           </div>
 
           <div className="metric">
-            <div className="value">0</div>
-            <span className="label">sq</span>
+            <div className="value">{toFixed1(SQ) || '–'}</div>
+            <span className="label">SQ</span>
           </div>
 
           <div className="metric">
-            <div className="value">0</div>
+            <div className="value">{toFixed1(meanRatings.comfort || '–')}</div>
             <span className="label">comfort</span>
           </div>
 
           <div className="metric">
-            <div className="value">{meanRatings.priceVsPerf || '–'}</div>
+            <div className="value">{toFixed1(meanRatings.priceVsPerf || '–')}</div>
             <span className="label">price vs perf.</span>
           </div>
 
