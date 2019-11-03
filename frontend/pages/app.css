@@ -26,7 +26,7 @@
 /* content */
 
 .content {
-  width: 1255px;
+  /* width: 1255px; */
   display: flex;
 }
 
@@ -72,5 +72,22 @@
 @media only screen and (max-width: 600px) {
   .photo {
     border-right: 0;
+  }
+}
+
+@media only screen and (max-width: 600px){
+  .results {
+    width: 100%;
+    height: 900px;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+@media only screen and (max-width: 600px){
+  .results-header {
+    width: 275px;
   }
 }

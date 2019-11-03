@@ -63,11 +63,13 @@ const Headphone = ({ headphone }) => {
 
   return (
     <div className="product">
+      
       <div className="photo">
         <div style={imageStyle} />
       </div>
 
       <div className="detail">
+
         <h5>
           {headphone.model} by {headphone.company.name}
         </h5>

@@ -91,14 +91,7 @@ export default () => {
           {data.headphones.map((headphone, i) => <Headphone key={i} headphone={headphone} />)}
         </div>
       </main>
-
-      <style jsx>{`
-        main {
-          width: 1200px;
-          display: flex;
-          margin: 0 auto;
-        }
-      `}</style>
+      
     </div>
   )
 }

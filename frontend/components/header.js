@@ -32,43 +32,7 @@ const Header = () => (
         ))}
       </ul>
     </nav>
-
-    <style jsx>{`
-      :global(body) {
-        margin: 0;
-        font-family: itc-avant-garde-gothic-pro, -apple-system, BlinkMacSystemFont, Avenir Next, Avenir,Helvetica, sans-serif;
-        font-weight: 500;
-        font-style: normal;
-      }
-      header {
-        margin: 50px 0;
-      }
-      nav,
-      figure {
-        text-align: center;
-      }
-      ul {
-        display: flex;
-        justify-content: space-between;
-      }
-      nav > ul {
-        padding: 4px 16px;
-        max-width: 600px;
-        margin: 0 auto;
-      }
-      li {
-        display: flex;
-        padding: 6px 8px;
-      }
-      a {
-        text-decoration: none;
-        font-size: 14px;
-        text-transform: uppercase;
-        letter-spacing: 0.1em;
-        color: #999;
-        font-weight: 300;
-      }
-    `}</style>
+    
   </header>
 )
 
