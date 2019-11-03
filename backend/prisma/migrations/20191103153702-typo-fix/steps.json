@@ -1,0 +1,30 @@
+{
+  "version": "0.3.14-fixed",
+  "steps": [
+    {
+      "stepType": "CreateField",
+      "model": "Headphone",
+      "name": "weight",
+      "type": {
+        "Base": "Float"
+      },
+      "arity": "optional",
+      "isUnique": false
+    },
+    {
+      "stepType": "CreateField",
+      "model": "Headphone",
+      "name": "gaming",
+      "type": {
+        "Base": "Boolean"
+      },
+      "arity": "optional",
+      "isUnique": false
+    },
+    {
+      "stepType": "DeleteField",
+      "model": "Headphone",
+      "name": "weigth"
+    }
+  ]
+}

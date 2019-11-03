@@ -1,0 +1,215 @@
+generator photon {
+  provider = "photonjs"
+}
+
+datasource db {
+  provider = "postgresql"
+  url = "***"
+}
+
+
+
+model User {
+  id    String  @default(cuid()) @id
+  email String  @unique
+  name  String?
+  role  Role    @default(USER)
+}
+
+model Company {
+  id          String    @default(cuid()) @id
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  name        String    @unique
+  website     String?
+  headphones  Headphone[]
+}
+
+model Headphone {
+  id          String    @default(cuid()) @id
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  slug        String    @unique
+  model       String    @unique
+  company     Company
+  url         String?
+  amazonUrl   String?
+  images      String[]
+  category    HeadphoneCategory?
+  enclosure   HeadphoneEnclosure?
+  freqRespFrom Int? // Hz
+  freqRespTo   Int? // kHz
+  driverDesc  String?
+  driverQty   Int?
+  driverSize  String?
+  driverType  HeadphoneDriverType?
+  driverMaterial  HeadphoneDriverMaterial?
+  price       Float? // USD
+  weight      Float? // g
+  impedance   Float? // ohm
+  sensitivity Float? // dB
+  THD90       Float? // % @ 1kHz / 90dB SPL
+  THD100      Float? // % @ 1kHz / 100dB SPL
+  wireless    Boolean? @default(false)
+  DSP         Boolean? @default(false)
+  ANC         Boolean? @default(false)
+  cableQty        Int?
+  cableRemovable  Boolean?
+  cableBalanced   Boolean?
+  cableLength     Float[] // m
+  cableTermEar    HeadphoneCableTerm?
+  cableTermAmp    HeadphoneCableTerm[]
+  earpadQty       Int?
+  earpadMaterial  HeadphoneEarpadMaterial[]
+  carryingCase    Boolean?
+  tunability      Int?
+  portability     Int?
+  serviceability  Int?
+  gaming          Boolean?
+
+  reviews         HeadphoneReview[]
+}
+
+model HeadphoneReview {
+  id          String    @default(cuid()) @id
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  headphone   Headphone
+
+  credibility Int       @default(5)
+  url         String?
+  reviewer    String?
+  video       Boolean?
+  notes       String?
+  takeaways   String[]
+
+  priceVsPerf       Int?
+  priceVsPerfUrl    String?
+  aesthetics        Int?
+  aestheticsUrl     String?
+  soundstage        Int?
+  soundstageDepth   Int?
+  soundstageWidth   Int?
+  soundstageHeight  Int?
+  soundstageUrl     String?
+  balanced          Int?
+  balancedUrl       String?
+  imaging           Int?
+  imagingUrl        String?
+  separation        Int?
+  separationUrl     String?
+  bassQty           Int?
+  bassClarity       Int?
+  bassExtension     Int?
+  bassTightness     Int?
+  bassImpact        Int?
+  bassUrl           String?
+  midrange          Int?
+  midrangeUrl       String?
+  treble            Int?
+  trebleExtension   Int?
+  trebleUrl         String?
+  distortion        Int?
+  distortionUrl     String?
+  dynamics          Int?
+  dynamicsUrl       String?
+  detail            Int?
+  detailUrl         String?
+  microDetail       Int?
+  microDetailUrl    String?
+  naturalness       Int?
+  naturalnessUrl    String?
+  smoothess         Int?
+  smoothessUrl      String?
+  forwardness       Int?
+  forwardnessUrl    String?
+  speed             Int?
+  speedUrl          String?
+  warmth            Int?
+  warmthUrl         String?
+  brigthness        Int?
+  brigthnessUrl     String?
+  analytical        Int?
+  analyticalUrl     String?
+  transparency      Int?
+  transparencyUrl   String?
+  sibilance         Int?
+  sibilanceUrl      String?
+  nonFatiguing      Int?
+  nonFatiguingUrl   String?
+  build             Int?
+  buildUrl          String?
+  comfort           Int?
+  comfortUrl        String?
+  isolation         Int?
+  isolationUrl      String?
+  leakage           Int?
+  leakageUrl        String?
+  matchability      Int?
+  matchabilityUrl   String?
+  breathability     Int?
+  breathabilityUrl  String?
+  sourceForgiving    Int?
+  sourceForgivingUrl String?
+  cableQuality      Int?
+  cableQualityUrl   String?
+  noBrainer         Boolean?
+  noBrainerUrl      String?
+}
+
+
+
+
+enum Role {
+  USER
+  ADMIN
+}
+
+enum HeadphoneEarpadMaterial {
+  Leather
+  PerfLeather
+  Pleather
+  Suede
+  Fabric
+}
+
+enum HeadphoneCableTerm {
+  TRRS_2_5
+  TRS_3_5
+  TRRS_4_4
+  TRS_6_35
+  MMCX
+  TWO_PIN
+  XLR
+  Proprietary
+}
+
+enum HeadphoneEnclosure {
+  OPEN_BACK
+  CLOSED_BACK
+  SEMI_OPEN
+}
+
+enum HeadphoneDriverType {
+  DYNAMIC
+  PLANAR
+  ELECTROSTATIC
+  ISODYNAMIC
+  BA
+  HYBRID
+}
+
+enum HeadphoneDriverMaterial {
+  ALUMINIUM
+  ALUMINIUM_MAGNESIUM
+  PAPER
+  MYLAR
+  BIOCELLULOSE
+  BERYLLIUM
+}
+
+enum HeadphoneCategory {
+  OVER_EAR
+  ON_EAR
+  IN_EAR
+}
