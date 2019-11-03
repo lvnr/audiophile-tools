@@ -137,7 +137,7 @@ const Headphone = objectType({
     t.model.driverSize()
     t.model.driverType()
     t.model.price()
-    t.model.weigth()
+    t.model.weight()
     t.model.impedance()
     t.model.sensitivity()
     t.model.THD90()
@@ -199,13 +199,19 @@ const Mutation = objectType({
   name: 'Mutation',
   definition(t) {
     t.crud.createOneUser({ alias: 'signupUser' })
+
     t.crud.createOneHeadphone()
+    t.crud.deleteOneHeadphone()
+    t.crud.updateOneHeadphone()
+
     t.crud.createOneCompany()
     t.crud.updateOneCompany()
-    t.crud.deleteOneHeadphone()
-    t.crud.upsertOneHeadphone()
-    t.crud.updateOneHeadphone()
-    t.crud.upsertOneHeadphoneReview()
+    t.crud.deleteOneCompany()
+
+    t.crud.createOneHeadphoneReview()
+    t.crud.updateOneHeadphoneReview()
+    t.crud.deleteOneHeadphoneReview()
+    t.crud.deleteManyHeadphoneReview()
 
     // t.field('createHeadphone', {
     //   type: 'Headphone',
@@ -224,26 +230,6 @@ const Mutation = objectType({
     //     })
     //   },
     // })
-
-    t.crud.createOneHeadphoneReview({ alias: 'createHeadphoneReview' })
-
-    t.field('connectHeadphoneReview', {
-      type: 'HeadphoneReview',
-      args: {
-        reviewId: idArg(),
-        headphoneModel: stringArg({ nullable: false }),
-      },
-      resolve: (_, { reviewId, headphoneModel }, ctx) => {
-        return ctx.photon.headphoneReviews.update({
-          where: { id: reviewId },
-          data: {
-            headphone: {
-              connect: { model: headphoneModel },
-            }
-          }
-        })
-      },
-    })
 
     // t.field('createHeadphoneReview', {
     //   type: 'HeadphoneReview',
