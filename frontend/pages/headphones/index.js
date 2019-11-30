@@ -84,7 +84,7 @@ export default () => {
     return false
   })
 
-  const filteredAndSortedHeadphones = data.headphones.sort((a, b) => {
+  const filteredAndSortedHeadphones = filteredHeadphones.sort((a, b) => {
     const { sortBy } = filteringAndSorting
 
     if (filteringAndSorting.sortOrder === true)
