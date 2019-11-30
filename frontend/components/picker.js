@@ -97,15 +97,18 @@ function Picker({ filteringAndSorting, setFilteringAndSorting }) {
         {tab === 'features' && (
           <div>
 
-            <Select
-              options={sortingOptions}
-              onChange={(selectedOption) => onSetFilteringAndSorting('sortBy', selectedOption)}
-              value={filteringAndSorting.sortBy}
-            />
+            <div className='select-section'>
+              <Select
+                options={sortingOptions}
+                onChange={(selectedOption) => onSetFilteringAndSorting('sortBy', selectedOption)}
+                value={filteringAndSorting.sortBy}
+              />
+            </div>
 
-            <button onClick={() => onSetFilteringAndSorting('sortOrder', true)}>ASC</button>          
-            <button onClick={() => onSetFilteringAndSorting('sortOrder', false)}>DSC</button>          
-
+            <div className='pick-category'>
+              <button onClick={() => onSetFilteringAndSorting('sortOrder', true)}>ASC</button>          
+              <button onClick={() => onSetFilteringAndSorting('sortOrder', false)}>DSC</button>          
+            </div>
 
             <div className="filter-section">
               <div className="label"><span>{filteringAndSorting.priceRange[0]}</span> Price Range <span>{filteringAndSorting.priceRange[1]}</span></div>
