@@ -63,21 +63,21 @@
   display: inline-block;
 }
 
-@media only screen and (max-width: 600px){
+@media only screen and (max-width: 960px){
   .results-headers {
     width: 200px;
   }
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 960px) {
   .photo {
     border-right: 0;
   }
 }
 
-@media only screen and (max-width: 600px){
+@media only screen and (max-width: 960px){
   .results {
-    width: 100%;
+    /* width: 100%; */
     height: 900px;
     margin: 0;
     display: flex;
@@ -86,7 +86,7 @@
   }
 }
 
-@media only screen and (max-width: 600px){
+@media only screen and (max-width: 960px){
   .results-header {
     width: 275px;
   }

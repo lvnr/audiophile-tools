@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useQuery } from '@apollo/react-hooks'
 import { gql } from 'apollo-boost'
 import Head from 'next/head'
@@ -7,6 +7,8 @@ import Header from '../../components/header'
 import Picker from '../../components/picker'
 import Headphone from '../../components/headphone'
 import '../app.css'
+// import Select from './select'
+
 
 const QUERY = gql`
   {
@@ -65,10 +67,31 @@ const QUERY = gql`
 export default () => {
   const { loading, error, data } = useQuery(QUERY)
 
+  const [filteringAndSorting, setFilteringAndSorting] = useState({
+    priceRange: [0, 5000],
+    sortBy: 'price',
+    sortOrder: 'desc',
+  })
+
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error :(</p>;
 
   console.log(data.headphones);
+
+  const filteredHeadphones = data.headphones.filter((headphone) => {
+    if (headphone.price > filteringAndSorting.priceRange[0] && headphone.price < filteringAndSorting.priceRange[1]) 
+      return true
+    return false
+  })
+
+  const filteredAndSortedHeadphones = data.headphones.sort((a, b) => {
+    const { sortBy } = filteringAndSorting
+
+    if (filteringAndSorting.sortOrder === 'asc')
+      return a[sortBy] - b[sortBy]
+    if (filteringAndSorting.sortOrder === 'desc')
+      return b[sortBy] - a[sortBy]
+  })
 
   return (
     <div>
@@ -81,14 +104,18 @@ export default () => {
       <Header />
 
       <main>
-        <Picker />
+        <Picker
+          filteringAndSorting={filteringAndSorting}
+          setFilteringAndSorting={setFilteringAndSorting}
+        />
 
         <div className='results'>
           <div className='results-header'>
             <h6>RESULTS</h6>
           </div>
 
-          {data.headphones.map((headphone, i) => <Headphone key={i} headphone={headphone} />)}
+          {filteredAndSortedHeadphones.map((headphone, i) => <Headphone key={i} headphone={headphone} />)}
+
         </div>
       </main>
       

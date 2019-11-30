@@ -165,7 +165,7 @@ main {
 
 
 
-@media only screen and (max-width: 600px){
+@media only screen and (max-width: 960px){
   .product {
     width: 275px;
     height: 900px;
@@ -174,7 +174,7 @@ main {
   }
 }
 
-@media only screen and (max-width: 600px){
+@media only screen and (max-width: 960px){
   .metric-body {
     width: 200px;
     padding: 0;
@@ -183,7 +183,7 @@ main {
   }
 }
 
-@media only screen and (max-width: 600px){
+@media only screen and (max-width: 960px){
   .metric.match {
     width: 200px;
     height: 900px;
@@ -192,7 +192,7 @@ main {
   }
 }
 
-@media only screen and (max-width: 600px){
+@media only screen and (max-width: 960px){
   .detail {
     width: 200px;
     height: 900px;
@@ -201,7 +201,7 @@ main {
   }
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 960px) {
   main {
       display: flex;
       flex-direction: column;
@@ -209,7 +209,7 @@ main {
   }
 }
  
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 960px) {
   .product {
       display: flex;
       align-items: center;

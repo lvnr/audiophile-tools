@@ -1,12 +1,5 @@
 import React from 'react'
-
 import Select from 'react-select'
-
-const options = [
-  { value: 'dynamic', label: 'Dynamic' },
-  { value: 'planar', label: 'Planar' },
-]
-
 
 const customStyles = {
   option: (provided, state) => ({
@@ -32,9 +25,9 @@ class MySelect extends React.Component{
   render(){
     return(
       <Select
-        options={options}
+        options={this.props.options}
         styles={customStyles}
-        isMulti
+        onChange={this.props.onChange}
       />
     )
   }
