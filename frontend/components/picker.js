@@ -32,27 +32,27 @@ const fieldDisambiguation = {
 function Picker({ filteringAndSorting, setFilteringAndSorting }) {
   
     const [picker, setPicker] = useState({
-      soundstage: null,
-      aesthetics: null,
-      balance: null,    
-      imaging: null, 
-      bassPower: null,  
-      bassClarity: null, 
-      bassSpeed: null,  
-      bassExtension: null,
-      midrange: null,  
-      treble: null,     
-      distortion: null, 
-      dynamics: null,   
-      detail: null,     
-      texture: null,    
-      naturalness: null,
-      smoothess: null, 
-      forwardness: null,
-      speed: null,      
-      warmth: null,    
-      brightness: null, 
-      sibilance: null,
+      soundstage: 0,
+      aesthetics: 0,
+      balance: 0,    
+      imaging: 0, 
+      bassPower: 0,  
+      bassClarity: 0, 
+      bassSpeed: 0,  
+      bassExtension: 0,
+      midrange: 0,  
+      treble: 0,     
+      distortion: 0, 
+      dynamics: 0,   
+      detail: 0,     
+      texture: 0,    
+      naturalness: 0,
+      smoothess: 0, 
+      forwardness: 0,
+      speed: 0,      
+      warmth: 0,    
+      brightness: 0, 
+      sibilance: 0,
     })
 
     const [tab, setTab] = useState('sound')
@@ -70,8 +70,12 @@ function Picker({ filteringAndSorting, setFilteringAndSorting }) {
       const label = labels[field] && labels[field][value] ? labels[field][value] : picker[field]
       return (
         <div className="filter-section" key={i}>
-          <div className="label">{fieldDisambiguation[field] || field} <span>{label}</span></div>
-          <Slider onChange={(val) => onChange(field, val)} min={0} max={10} />
+            <button className='slider-button' onClick={() => onChange(field, 0)}/>
+          <div className="label">{fieldDisambiguation[field] || field} 
+            <span> {label} </span>
+            
+          </div>
+          <Slider onChange={(val) => onChange(field, val)} min={0} max={10} value={value} />
         </div>
       )
     })
@@ -123,7 +127,7 @@ function Picker({ filteringAndSorting, setFilteringAndSorting }) {
           </div>
         )}
 
-        {/* <div className="filter-section">
+        {/* <div className="filter-section">';
           <span id="driver">Driver</span>
           <div className="round">
             <input type="checkbox" id="checkbox" />

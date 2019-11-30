@@ -2,6 +2,12 @@ button {
   outline: none;
 }
 
+.slider-button {
+  position: absolute;
+  height: 10px;
+  width: 10px;
+}
+
 .rc-slider-handle {
   width: 20px;
   height: 20px;
