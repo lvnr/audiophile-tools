@@ -28,6 +28,7 @@ class MySelect extends React.Component{
         options={this.props.options}
         styles={customStyles}
         onChange={this.props.onChange}
+        value={this.props.value}
       />
     )
   }

@@ -99,8 +99,13 @@ function Picker({ filteringAndSorting, setFilteringAndSorting }) {
 
             <Select
               options={sortingOptions}
-              onChange={(selectedOption) => onSetFilteringAndSorting('sortBy', selectedOption.value)}
+              onChange={(selectedOption) => onSetFilteringAndSorting('sortBy', selectedOption)}
+              value={filteringAndSorting.sortBy}
             />
+
+            <button onClick={() => onSetFilteringAndSorting('sortOrder', true)}>ASC</button>          
+            <button onClick={() => onSetFilteringAndSorting('sortOrder', false)}>DSC</button>          
+
 
             <div className="filter-section">
               <div className="label"><span>{filteringAndSorting.priceRange[0]}</span> Price Range <span>{filteringAndSorting.priceRange[1]}</span></div>

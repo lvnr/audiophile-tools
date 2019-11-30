@@ -69,8 +69,8 @@ export default () => {
 
   const [filteringAndSorting, setFilteringAndSorting] = useState({
     priceRange: [0, 5000],
-    sortBy: 'price',
-    sortOrder: 'desc',
+    sortBy: { value: 'price', label: 'Price' },
+    sortOrder: true,
   })
 
   if (loading) return <p>Loading...</p>;
@@ -87,10 +87,10 @@ export default () => {
   const filteredAndSortedHeadphones = data.headphones.sort((a, b) => {
     const { sortBy } = filteringAndSorting
 
-    if (filteringAndSorting.sortOrder === 'asc')
-      return a[sortBy] - b[sortBy]
-    if (filteringAndSorting.sortOrder === 'desc')
-      return b[sortBy] - a[sortBy]
+    if (filteringAndSorting.sortOrder === true)
+      return a[sortBy.value] - b[sortBy.value]
+    if (filteringAndSorting.sortOrder === false)
+      return b[sortBy.value] - a[sortBy.value]
   })
 
   return (
