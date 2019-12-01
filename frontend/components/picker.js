@@ -57,6 +57,7 @@ function Picker({ filteringAndSorting, setFilteringAndSorting, soundPreferences,
     })
 
     const sortingOptions = [
+      { value: 'match', label: 'Match' },
       { value: 'price', label: 'Price' },
     ]
 
