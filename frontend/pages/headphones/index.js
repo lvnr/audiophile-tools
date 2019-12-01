@@ -8,7 +8,12 @@ import Picker from '../../components/picker'
 import Headphone from '../../components/headphone'
 import '../app.css'
 // import Select from './select'
+import { extendHeadphone } from '../../lib/utils'
 
+/*
+  There are no perfect product, but there are perfect matches...
+  Tell us what you love and we'll tell you what to buy.
+*/
 
 const QUERY = gql`
   {
@@ -17,6 +22,15 @@ const QUERY = gql`
       model
       price
       images
+      category
+      enclosure
+      driverType
+      weight
+      impedance
+      sensitivity
+      wireless
+      tunability
+      portability
       company {
         name
       }
@@ -67,18 +81,46 @@ const QUERY = gql`
 export default () => {
   const { loading, error, data } = useQuery(QUERY)
 
+  const [soundPreferences, setSoundPreferences] = useState({
+    soundstage: 0,
+    aesthetics: 0,
+    balance: 0,    
+    imaging: 0, 
+    bassPower: 0,  
+    bassClarity: 0, 
+    bassSpeed: 0,  
+    bassExtension: 0,
+    midrange: 0,  
+    treble: 0,     
+    distortion: 0, 
+    dynamics: 0,   
+    detail: 0,     
+    texture: 0,    
+    naturalness: 0,
+    smoothess: 0, 
+    forwardness: 0,
+    speed: 0,      
+    warmth: 0,    
+    brightness: 0, 
+    sibilance: 0,
+  })
+
   const [filteringAndSorting, setFilteringAndSorting] = useState({
     priceRange: [0, 5000],
-    sortBy: { value: 'price', label: 'Price' },
-    sortOrder: true,
+    sortBy: { value: 'match', label: 'Match' },
+    sortOrder: 'dsc',
   })
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error :(</p>;
 
-  console.log(data.headphones);
+  console.time('calculating headphone stats')
+  const headphones = data.headphones.map((h) => extendHeadphone(h, soundPreferences))
+  console.timeEnd('calculating headphone stats')
 
-  const filteredHeadphones = data.headphones.filter((headphone) => {
+  console.log(headphones);
+  
+  const filteredHeadphones = headphones.filter((headphone) => {
     if (headphone.price > filteringAndSorting.priceRange[0] && headphone.price < filteringAndSorting.priceRange[1]) 
       return true
     return false
@@ -87,9 +129,9 @@ export default () => {
   const filteredAndSortedHeadphones = filteredHeadphones.sort((a, b) => {
     const { sortBy } = filteringAndSorting
 
-    if (filteringAndSorting.sortOrder === true)
+    if (filteringAndSorting.sortOrder === 'asc')
       return a[sortBy.value] - b[sortBy.value]
-    if (filteringAndSorting.sortOrder === false)
+    if (filteringAndSorting.sortOrder === 'dsc')
       return b[sortBy.value] - a[sortBy.value]
   })
 
@@ -107,6 +149,8 @@ export default () => {
         <Picker
           filteringAndSorting={filteringAndSorting}
           setFilteringAndSorting={setFilteringAndSorting}
+          soundPreferences={soundPreferences}
+          setSoundPreferences={setSoundPreferences}
         />
 
         <div className='results'>

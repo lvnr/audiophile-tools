@@ -29,45 +29,21 @@ const fieldDisambiguation = {
   bassExtension: 'bass (extension)',
 }
 
-function Picker({ filteringAndSorting, setFilteringAndSorting }) {
+function Picker({ filteringAndSorting, setFilteringAndSorting, soundPreferences, setSoundPreferences }) {
   
-    const [picker, setPicker] = useState({
-      soundstage: 0,
-      aesthetics: 0,
-      balance: 0,    
-      imaging: 0, 
-      bassPower: 0,  
-      bassClarity: 0, 
-      bassSpeed: 0,  
-      bassExtension: 0,
-      midrange: 0,  
-      treble: 0,     
-      distortion: 0, 
-      dynamics: 0,   
-      detail: 0,     
-      texture: 0,    
-      naturalness: 0,
-      smoothess: 0, 
-      forwardness: 0,
-      speed: 0,      
-      warmth: 0,    
-      brightness: 0, 
-      sibilance: 0,
-    })
-
     const [tab, setTab] = useState('sound')
 
     const onChange = (fieldName, fieldValue) => {
-      setPicker({ ...picker, [fieldName]: fieldValue })
+      setSoundPreferences({ ...soundPreferences, [fieldName]: fieldValue })
     }
 
     const onSetFilteringAndSorting = (fieldName, fieldValue) => {
       setFilteringAndSorting({ ...filteringAndSorting, [fieldName]: fieldValue })
     }
     
-    const pickerArray = Object.keys(picker).map((field, i) => {
-      const value = picker[field]
-      const label = labels[field] && labels[field][value] ? labels[field][value] : picker[field]
+    const pickerArray = Object.keys(soundPreferences).map((field, i) => {
+      const value = soundPreferences[field]
+      const label = labels[field] && labels[field][value] ? labels[field][value] : soundPreferences[field]
       return (
         <div className="filter-section" key={i}>
             <button className='slider-button' onClick={() => onChange(field, 0)}/>
@@ -110,8 +86,8 @@ function Picker({ filteringAndSorting, setFilteringAndSorting }) {
             </div>
 
             <div className='pick-category'>
-              <button onClick={() => onSetFilteringAndSorting('sortOrder', true)}>ASC</button>          
-              <button onClick={() => onSetFilteringAndSorting('sortOrder', false)}>DSC</button>          
+              <button onClick={() => onSetFilteringAndSorting('sortOrder', 'asc')}>ASC</button>          
+              <button onClick={() => onSetFilteringAndSorting('sortOrder', 'dsc')}>DSC</button>          
             </div>
 
             <div className="filter-section">
