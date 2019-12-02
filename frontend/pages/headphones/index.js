@@ -9,6 +9,7 @@ import Headphone from '../../components/headphone'
 import '../app.css'
 // import Select from './select'
 import { extendHeadphone } from '../../lib/utils'
+import { rSquared } from 'simple-statistics'
 
 /*
   There are no perfect product, but there are perfect matches...
@@ -81,7 +82,7 @@ const QUERY = gql`
 export default () => {
   const { loading, error, data } = useQuery(QUERY)
 
-  const [soundPreferences, setSoundPreferences] = useState({
+  const initialState = {
     soundstage: 0,
     aesthetics: 0,
     balance: 0,    
@@ -103,11 +104,13 @@ export default () => {
     warmth: 0,    
     brightness: 0, 
     sibilance: 0,
-  })
+  }
+
+  const [soundPreferences, setSoundPreferences] = useState(initialState)
 
   const [filteringAndSorting, setFilteringAndSorting] = useState({
     priceRange: [0, 5000],
-    sortBy: { value: 'match', label: 'Match' },
+    sortBy: { value: 'match', label: 'Match', value: 'SQ', label: 'SQ'},
     sortOrder: 'dsc',
   })
 
@@ -151,6 +154,7 @@ export default () => {
           setFilteringAndSorting={setFilteringAndSorting}
           soundPreferences={soundPreferences}
           setSoundPreferences={setSoundPreferences}
+          initialState={initialState}
         />
 
         <div className='results'>

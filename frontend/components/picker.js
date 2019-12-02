@@ -4,6 +4,7 @@ import Select from './select'
 import Slider, { Range } from 'rc-slider';
 import 'rc-slider/assets/index.css'
 import './picker.css'
+import { object } from 'prop-types';
 
 
 // sargel 2 hat knopka ASC, DSC
@@ -29,7 +30,7 @@ const fieldDisambiguation = {
   bassExtension: 'bass (extension)',
 }
 
-function Picker({ filteringAndSorting, setFilteringAndSorting, soundPreferences, setSoundPreferences }) {
+function Picker({ filteringAndSorting, setFilteringAndSorting, soundPreferences, setSoundPreferences, initialState}) {
   
     const [tab, setTab] = useState('sound')
 
@@ -37,16 +38,27 @@ function Picker({ filteringAndSorting, setFilteringAndSorting, soundPreferences,
       setSoundPreferences({ ...soundPreferences, [fieldName]: fieldValue })
     }
 
+    const onClick = () => {
+      setSoundPreferences(initialState)
+    }
+
     const onSetFilteringAndSorting = (fieldName, fieldValue) => {
       setFilteringAndSorting({ ...filteringAndSorting, [fieldName]: fieldValue })
     }
+
+    const hasFilters = Object.values(soundPreferences).some((v) => v > 0)
     
     const pickerArray = Object.keys(soundPreferences).map((field, i) => {
       const value = soundPreferences[field]
       const label = labels[field] && labels[field][value] ? labels[field][value] : soundPreferences[field]
+      
       return (
         <div className="filter-section" key={i}>
-            <button className='slider-button' onClick={() => onChange(field, 0)}/>
+
+          <div className='container-slider-button'>
+            <button className={`reset-button ${ value > 0 ? 'active' : 'passive'}`} onClick={() => onChange(field, 0)}/>
+          </div>
+            
           <div className="label">{fieldDisambiguation[field] || field} 
             <span> {label} </span>
             
@@ -59,13 +71,20 @@ function Picker({ filteringAndSorting, setFilteringAndSorting, soundPreferences,
     const sortingOptions = [
       { value: 'match', label: 'Match' },
       { value: 'price', label: 'Price' },
+      { value: 'sq', label: 'SQ'}
     ]
 
     return (
       <div className="taste-picker">
+
         
         <div className="pick-header">
           <h5>PICK YOUR FLAVOR</h5>
+
+          <div className='container-slider-button'>
+            <button className={`reset-button ${ hasFilters ? 'active' : 'passive'}`} onClick={onClick}/>
+         </div>
+
         </div>
 
         <div className="pick-category">
