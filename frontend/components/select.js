@@ -29,6 +29,8 @@ class MySelect extends React.Component{
         styles={customStyles}
         onChange={this.props.onChange}
         value={this.props.value}
+        isMulti={this.props.isMulti}
+        placeholder={this.props.placeholder}
       />
     )
   }

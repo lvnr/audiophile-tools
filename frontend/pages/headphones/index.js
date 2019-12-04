@@ -109,9 +109,33 @@ export default () => {
   const [soundPreferences, setSoundPreferences] = useState(initialState)
 
   const [filteringAndSorting, setFilteringAndSorting] = useState({
-    priceRange: [0, 5000],
-    sortBy: { value: 'match', label: 'Match', value: 'SQ', label: 'SQ'},
-    sortOrder: 'dsc',
+      priceRange: [0, 5000],
+      sortBy: { value: 'match', label: 'Match', value: 'SQ', label: 'SQ'},
+      sortOrder: 'dsc',
+    })
+
+    const [weight, setWeight] = useState({
+      weightRange: [0, 1000]
+    })
+
+  const [categoryOptions, setCategoryOptions] = useState({
+    sortBy: {value: 'over-ear', label: 'Over-ear', 
+              value: 'on-ear', label: 'On-ear',
+              value: 'in-ear', label: 'In-ear'}
+  })
+
+  const [enclosureOptions, setEnclosureOptions] = useState({
+    sortBy: { value: 'open', label: 'Open', 
+              value: 'semi-open', label: 'Semi-open', 
+              value: 'closed', label: 'Closed'}
+  })
+
+  const [driverTypeOptions, setDriverTypeOptions] = useState({
+    sortBy: { value: 'planar', label: 'Planar',
+              value: 'dynamic', label: 'Dynamic', 
+              value: 'electro-Static', label: 'Electro-Static', 
+              value: 'hybrid', label: 'Hybrid',
+              value: 'balanced brmature', label: 'Balanced Armature'}
   })
 
   if (loading) return <p>Loading...</p>;
@@ -128,6 +152,12 @@ export default () => {
       return true
     return false
   })
+
+  // const filteredHeadphonesWeight = headphones.filter((headphone) => {
+  //   if (headphone.weight > weight.weightRange[0] && headphone.weight < weight.weightRange[1]) 
+  //     return true
+  //   return false
+  // })
 
   const filteredAndSortedHeadphones = filteredHeadphones.sort((a, b) => {
     const { sortBy } = filteringAndSorting
@@ -155,6 +185,14 @@ export default () => {
           soundPreferences={soundPreferences}
           setSoundPreferences={setSoundPreferences}
           initialState={initialState}
+          categoryOptions={categoryOptions}
+          setCategoryOptions={setCategoryOptions}
+          enclosureOptions={enclosureOptions}
+          setEnclosureOptions={setEnclosureOptions}
+          driverTypeOptions={driverTypeOptions}
+          setDriverTypeOptions={setDriverTypeOptions}
+          weight={weight}
+          setWeight={setWeight}
         />
 
         <div className='results'>

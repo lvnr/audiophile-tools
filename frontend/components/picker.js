@@ -30,7 +30,9 @@ const fieldDisambiguation = {
   bassExtension: 'bass (extension)',
 }
 
-function Picker({ filteringAndSorting, setFilteringAndSorting, soundPreferences, setSoundPreferences, initialState}) {
+function Picker({ filteringAndSorting, setFilteringAndSorting, soundPreferences, setSoundPreferences, 
+  initialState, categoryOptions, setCategoryOptions, enclosureOptions, setEnclosureOptions, driverTypeOptions, setDriverTypeOptions,
+  weight, setWeight}) {
   
     const [tab, setTab] = useState('sound')
 
@@ -44,6 +46,22 @@ function Picker({ filteringAndSorting, setFilteringAndSorting, soundPreferences,
 
     const onSetFilteringAndSorting = (fieldName, fieldValue) => {
       setFilteringAndSorting({ ...filteringAndSorting, [fieldName]: fieldValue })
+    }
+
+    const onSetFilterinWeight = (fieldName, fieldValue) => {
+      setWeight({ ...weight, [fieldName]: fieldValue})
+    }
+
+    const onSetCategoryOptions = (fieldName, fieldValue) => {
+      setCategoryOptions({ ...categoryOptions, [fieldName]: fieldValue})
+    }
+
+    const onSetEnclosureOptions = (fieldName, fieldValue) => {
+      setEnclosureOptions({ ...enclosureOptions, [fieldName]: fieldValue})
+    }
+
+    const onSetDriverTypeOptions = (fieldName, fieldValue) => {
+      setDriverTypeOptions({ ...driverTypeOptions, [fieldName]: fieldValue})
     }
 
     const hasFilters = Object.values(soundPreferences).some((v) => v > 0)
@@ -74,6 +92,32 @@ function Picker({ filteringAndSorting, setFilteringAndSorting, soundPreferences,
       { value: 'sq', label: 'SQ'}
     ]
 
+    const sortingCategoriesOptions = [
+      { value: 'over-ear', label: 'Over-ear'},
+      { value: 'on-ear', label: 'On-ear'},
+      { value: 'in-ear', label: 'In-ear'}
+    ]
+
+    const sortingEnclusureOptions = [
+      { value: 'open', label: 'Open'}, 
+      { value: 'semi-open', label: 'Semi-open'}, 
+      { value: 'closed', label: 'Closed'}
+    ]
+
+    const sortingDriverTypeOptions = [
+      { value: 'planar', label: 'Planar'},
+      { value: 'dynamic', label: 'Dynamic'}, 
+      { value: 'electro-Static', label: 'Electro-Static'}, 
+      { value: 'hybrid', label: 'Hybrid'},
+      { value: 'balanced brmature', label: 'Balanced Armature'}
+    ]
+ 
+    // const onChangeCategory = () => {
+    //   if (tab === 'sound') 
+    //     return 'active'
+    //   else 'passive'
+    // }
+
     return (
       <div className="taste-picker">
 
@@ -88,8 +132,8 @@ function Picker({ filteringAndSorting, setFilteringAndSorting, soundPreferences,
         </div>
 
         <div className="pick-category">
-          <button onClick={() => setTab('sound')}>sound</button>
-          <button onClick={() => setTab('features')}>features</button>
+          <button className={`reset-pick-category-sound ${tab === 'sound' ? 'active' : 'passive'}`} onClick={() => setTab('sound')}>sound</button>
+          <button className={`reset-pick-category-features ${tab === 'features' ? 'active' : 'passive'}`} onClick={() => setTab('features')}>features</button>
         </div>
 
         {tab === 'sound' && pickerArray}
@@ -102,6 +146,28 @@ function Picker({ filteringAndSorting, setFilteringAndSorting, soundPreferences,
                 options={sortingOptions}
                 onChange={(selectedOption) => onSetFilteringAndSorting('sortBy', selectedOption)}
                 value={filteringAndSorting.sortBy}
+                placeholder="Sort by"
+              />
+
+              <Select
+                options={sortingCategoriesOptions}
+                onChange={(selectedOption) => onSetCategoryOptions('sortBy', selectedOption)}
+                value={categoryOptions.sortBy}
+                isMulti
+              />
+
+              <Select
+                options={sortingEnclusureOptions}
+                onChange={(selectedOption) => onSetEnclosureOptions('sortBy', selectedOption)}
+                value={enclosureOptions.sortBy}
+                isMulti
+              />
+
+              <Select
+                options={sortingDriverTypeOptions}
+                onChange={(selectedOption) => onSetDriverTypeOptions('sortBy', selectedOption)}
+                value={driverTypeOptions.sortBy}
+                isMulti
               />
             </div>
 
@@ -112,14 +178,26 @@ function Picker({ filteringAndSorting, setFilteringAndSorting, soundPreferences,
 
             <div className="filter-section">
               <div className="label"><span>{filteringAndSorting.priceRange[0]}</span> Price Range <span>{filteringAndSorting.priceRange[1]}</span></div>
-              <Range
-                value={filteringAndSorting.priceRange}
-                onChange={(val) => onSetFilteringAndSorting('priceRange', val)}
-                min={0}
-                max={5000}
-                allowCross={false}
-              />
+                <Range
+                  value={filteringAndSorting.priceRange}
+                  onChange={(val) => onSetFilteringAndSorting('priceRange', val)}
+                  min={0}
+                  max={5000}
+                  allowCross={false}
+                />
             </div>
+
+            <div className="filter-section">
+              <div className="label"><span>{weight.weightRange[0]}</span> Weight <span>{weight.weightRange[1]}</span></div>
+                <Range
+                  value={weight.weightRange}
+                  onChange={(val) => onSetFilterinWeight('weightRange', val)}
+                  min={0}
+                  max={1000}
+                  allowCross={false}
+                />
+            </div>
+            
           </div>
         )}
 
