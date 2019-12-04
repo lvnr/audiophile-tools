@@ -6,10 +6,6 @@ import 'rc-slider/assets/index.css'
 import './picker.css'
 import { object } from 'prop-types';
 
-
-// sargel 2 hat knopka ASC, DSC
-// amen knopkan sxmeluc update anel 'sortOrder' statei dashty
-
 const labels = {
   soundstage: {
     0:  'Non-existent',
@@ -111,12 +107,6 @@ function Picker({ filteringAndSorting, setFilteringAndSorting, soundPreferences,
       { value: 'hybrid', label: 'Hybrid'},
       { value: 'balanced brmature', label: 'Balanced Armature'}
     ]
- 
-    // const onChangeCategory = () => {
-    //   if (tab === 'sound') 
-    //     return 'active'
-    //   else 'passive'
-    // }
 
     return (
       <div className="taste-picker">
@@ -172,8 +162,8 @@ function Picker({ filteringAndSorting, setFilteringAndSorting, soundPreferences,
             </div>
 
             <div className='pick-category'>
-              <button onClick={() => onSetFilteringAndSorting('sortOrder', 'asc')}>ASC</button>          
-              <button onClick={() => onSetFilteringAndSorting('sortOrder', 'dsc')}>DSC</button>          
+              <button  className={`sorting-button ${ filteringAndSorting.sortOrder === 'asc' ? 'active' : 'passive'}`} onClick={() => onSetFilteringAndSorting('sortOrder', 'asc')}>ASC</button>          
+              <button  className={`sorting-button ${ filteringAndSorting.sortOrder === 'dsc' ? 'active' : 'passive'}`} onClick={() => onSetFilteringAndSorting('sortOrder', 'dsc')}>DSC</button>          
             </div>
 
             <div className="filter-section">
