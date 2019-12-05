@@ -69,9 +69,34 @@ button {
   text-transform: uppercase;
 }
 
-.pick-category button:hover {
+.sorting-button.active {
   background-color: black;
   color: #CCCCCC;
+}
+
+.sorting-button.passive {
+  background-color: unset;
+  color: black;
+}
+
+.reset-pick-category-sound.active {
+  background-color: black;
+  color: #CCCCCC;
+}
+
+.reset-pick-category-sound.passive {
+  background-color: unset;
+  color: black;
+}
+
+.reset-pick-category-features.active {
+  background-color: black;
+  color: #CCCCCC;
+}
+
+.reset-pick-category-features.passive {
+  background-color: unset;
+  color: black;
 }
 
 .taste-picker .filter-section .label {
