@@ -1,7 +1,10 @@
-import { Photon } from '@generated/photon'
-const photon = new Photon()
+import { Photon } from '@prisma/photon'
+
+main()
 
 async function main() {
+  const photon = new Photon()
+
   // const user1 = await photon.users.create({
   //   data: {
   //     email: 'alice@prisma.io',
@@ -49,10 +52,6 @@ async function main() {
   })
 
   console.log({ headphone1 })
-}
 
-main()
-  .catch(e => console.error(e))
-  .finally(async () => {
-    await photon.disconnect()
-  })
+  await photon.disconnect()
+}

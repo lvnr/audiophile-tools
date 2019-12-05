@@ -1,9 +1,12 @@
 {
   "compilerOptions": {
-    "outDir": "dist",
-    "rootDir": "src",
+    "target": "es2016",
+    "module": "commonjs",
     "lib": ["esnext"],
-    "strict": true
+    "rootDir": "src",
+    "strict": true,
+    "outDir": "dist"
   },
-  "include": ["src/**/*"]
+  "include": ["src/**/*"],
+  "exclude": ["prisma/**/*"]
 }

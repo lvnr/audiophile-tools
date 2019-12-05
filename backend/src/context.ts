@@ -1,11 +1,11 @@
-import { Photon } from '@generated/photon'
+import { Photon } from '@prisma/photon'
 
 const photon = new Photon()
 
-export interface Context {
+export type Context = {
   photon: Photon
 }
 
-export function createContext(): Context {
-  return { photon }
-}
+export const createContext = (): Context => ({
+  photon,
+})
