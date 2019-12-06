@@ -1,9 +1,9 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-const nexus_1 = require("nexus");
+exports.__esModule = true;
+var nexus_1 = require("nexus");
 exports.Headphone = nexus_1.objectType({
     name: 'Headphone',
-    definition(t) {
+    definition: function (t) {
         t.model.id();
         t.model.createdAt();
         t.model.updatedAt();
@@ -44,7 +44,7 @@ exports.Headphone = nexus_1.objectType({
         t.model.serviceability();
         t.model.reviews({
             type: 'HeadphoneReview',
-            pagination: false,
+            pagination: false
         });
-    },
+    }
 });

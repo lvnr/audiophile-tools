@@ -1,8 +1,8 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-const nexus_1 = require("nexus");
+exports.__esModule = true;
+var nexus_1 = require("nexus");
 exports.Mutation = nexus_1.mutationType({
-    definition(t) {
+    definition: function (t) {
         t.crud.createOneUser({ alias: 'signupUser' });
         t.crud.createOneHeadphone();
         t.crud.deleteOneHeadphone();
@@ -61,5 +61,5 @@ exports.Mutation = nexus_1.mutationType({
         //     })
         //   },
         // })
-    },
+    }
 });

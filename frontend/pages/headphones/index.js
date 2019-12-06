@@ -14,6 +14,8 @@ import { rSquared } from 'simple-statistics'
 /*
   There are no perfect product, but there are perfect matches...
   Tell us what you love and we'll tell you what to buy.
+
+  The most imformed way to buy...
 */
 
 const QUERY = gql`
