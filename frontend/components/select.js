@@ -11,9 +11,17 @@ const customStyles = {
   }),
   control: (provided, state) => ({
     ...provided,
-    // borderBottom: "1px",
-    padding: "5px",
-    backgroundColor: "",
+    padding: '5px',
+    backgroundColor: '#fff',
+    borderRadius: '0',
+    borderLeft: '0',
+    borderRight: '0',
+    borderBottom: '0',
+    borderColor: 'rgba(235, 235, 235, 0.906)',
+    boxShadow: 'none'
+  }),
+  continer: (provided, state) => ({
+    ...provided,
   }),
   singleValue: (provided, state) => {
     const opacity = state.isDisabled ? 0.5 : 1
@@ -23,19 +31,41 @@ const customStyles = {
   }
 }
 
-class MySelect extends React.Component{
-  render(){
-    return(
+const allOption = { value: 'all', label: 'All' }
+
+
+const MySelect = (props) => {
+  if (props.allowSelectAll) {
+    if (props.value.length === props.options.length) {
+      return (
+        <Select
+          {...props}
+          styles={customStyles}
+          value={[allOption]}
+          onChange={selected => props.onChange(selected.slice(1))}
+        />
+      )
+    }
+
+    return (
       <Select
-        options={this.props.options}
+        {...props}
         styles={customStyles}
-        onChange={this.props.onChange}
-        value={this.props.value}
-        isMulti={this.props.isMulti}
-        placeholder={this.props.placeholder}
+        options={[allOption, ...props.options]}
+        onChange={(selected, { action }) => {
+          if (action === 'clear')
+            return props.onChange([allOption])
+
+          if (selected && selected.length > 0 && selected[selected.length - 1].value === allOption.value)
+            return props.onChange(props.options)
+
+          return props.onChange(selected ? selected.filter((option) => option.value !== allOption.value) : [allOption])
+        }}
       />
     )
   }
+
+  return <Select {...props} styles={customStyles} />
 }
 
 export default MySelect

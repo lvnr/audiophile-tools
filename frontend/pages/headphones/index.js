@@ -116,44 +116,11 @@ export default () => {
       priceRange: [0, 5000],
       weightRange: [0, 1000],
       sortBy: { value: 'match', label: 'Match'},
-      category: [ { value: 'over-ear', label: 'Over-ear'}, 
-                  { value: 'on-ear', label: 'On-ear'},
-                  { value: 'in-ear', label: 'In-ear'}],
-      enclosure: [{ value: 'open', label: 'Open'}, 
-                  { value: 'semi-open', label: 'Semi-open'}, 
-                  { value: 'closed', label: 'Closed'}],
-      driver: [ { value: 'planar', label: 'Planar'},
-                { value: 'dynamic', label: 'Dynamic'}, 
-                { value: 'electro-Static', label: 'Electro-Static'}, 
-                { value: 'hybrid', label: 'Hybrid'},
-                { value: 'balanced brmature', label: 'Balanced Armature'}],
+      category: [{ value: 'all', label: 'All' }],
+      enclosure: [{ value: 'all', label: 'All' }],
+      driver: [{ value: 'all', label: 'All' }],
       sortOrder: 'dsc',
     })
-
-<<<<<<< Updated upstream
-    const [weight, setWeight] = useState({
-      weightRange: [0, 1000]
-    })
-
-  const [categoryOptions, setCategoryOptions] = useState({
-    sortBy: {value: 'over-ear', label: 'Over-ear', 
-              value: 'on-ear', label: 'On-ear',
-              value: 'in-ear', label: 'In-ear'}
-  })
-
-  const [enclosureOptions, setEnclosureOptions] = useState({
-    sortBy: { value: 'open', label: 'Open', 
-              value: 'semi-open', label: 'Semi-open', 
-              value: 'closed', label: 'Closed'}
-  })
-
-  const [driverTypeOptions, setDriverTypeOptions] = useState({
-    sortBy: { value: 'planar', label: 'Planar',
-              value: 'dynamic', label: 'Dynamic', 
-              value: 'electro-Static', label: 'Electro-Static', 
-              value: 'hybrid', label: 'Hybrid',
-              value: 'balanced brmature', label: 'Balanced Armature'}
-  })
 
   let headphones
   let filteredHeadphones
@@ -167,7 +134,16 @@ export default () => {
     console.log(headphones);
     
     filteredHeadphones = headphones.filter((headphone) => {
-      if (headphone.price > filteringAndSorting.priceRange[0] && headphone.price < filteringAndSorting.priceRange[1]) 
+      const { priceRange, weightRange, category, enclosure, driver } = filteringAndSorting
+      const categoryFilters = category.map((e) => e.value)
+      const enclosureFilters = enclosure.map((e) => e.value)
+      const driverFilters = driver.map((e) => e.value)
+
+      if ((headphone.price > priceRange[0] && headphone.price < priceRange[1])
+          && (headphone.weight > weightRange[0] && headphone.weight < weightRange[1])
+          && (categoryFilters.includes(headphone.category) || categoryFilters[0] === 'all')
+          && (enclosureFilters.includes(headphone.enclosure) || enclosureFilters[0] === 'all')
+          && (driverFilters.includes(headphone.driverType) || driverFilters[0] === 'all'))
         return true
       return false
     })
@@ -180,27 +156,6 @@ export default () => {
 
     filteredAndSortedHeadphones = filteredHeadphones.sort((a, b) => {
       const { sortBy } = filteringAndSorting
-=======
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error :(</p>;
-
-  console.time('calculating headphone stats')
-  const headphones = data.headphones.map((h) => extendHeadphone(h, soundPreferences))
-  console.timeEnd('calculating headphone stats')
-
-  console.log(headphones);
-  
-  const filteredHeadphones = headphones.filter((headphone) => {
-    const { priceRange, weightRange } = filteringAndSorting
-    if (headphone.price > priceRange[0] && headphone.weight > weightRange[0] && 
-        headphone.weight < weightRange[1] && headphone.price < priceRange[1]) 
-      return true
-    return false
-  })
-
-  const filteredAndSortedHeadphones = filteredHeadphones.sort((a, b) => {
-    const { sortBy } = filteringAndSorting
->>>>>>> Stashed changes
 
       if (filteringAndSorting.sortOrder === 'asc')
         return a[sortBy.value] - b[sortBy.value]

@@ -46,19 +46,19 @@ function Picker({ filteringAndSorting, setFilteringAndSorting, soundPreferences,
     
     const pickerArray = Object.keys(soundPreferences).map((field, i) => {
       const value = soundPreferences[field]
-      const label = labels[field] && labels[field][value] ? labels[field][value] : soundPreferences[field]
+      // const label = labels[field] && labels[field][value] ? labels[field][value] : soundPreferences[field]
       
       return (
         <div className="filter-section" key={i}>
-
           <div className='container-slider-button'>
             <button className={`reset-button ${ value > 0 ? 'active' : 'passive'}`} onClick={() => onChange(field, 0)}/>
           </div>
-            
-          <div className="label">{fieldDisambiguation[field] || field} 
-            <span> {label} </span>
-            
+          
+          <div className="label">
+            {fieldDisambiguation[field] || field} 
+            <span> {value > 0 ? value : ''} </span>
           </div>
+
           <Slider onChange={(val) => onChange(field, val)} min={0} max={10} value={value} />
         </div>
       )
@@ -71,23 +71,24 @@ function Picker({ filteringAndSorting, setFilteringAndSorting, soundPreferences,
     ]
 
     const sortingCategoriesOptions = [
-      { value: 'over-ear', label: 'Over-ear'},
-      { value: 'on-ear', label: 'On-ear'},
-      { value: 'in-ear', label: 'In-ear'}
+      { value: 'OVER_EAR', label: 'Over-ear'},
+      { value: 'ON_EAR', label: 'On-ear'},
+      { value: 'IN_EAR', label: 'In-ear'}
     ]
 
     const sortingEnclusureOptions = [
-      { value: 'open', label: 'Open'}, 
-      { value: 'semi-open', label: 'Semi-open'}, 
-      { value: 'closed', label: 'Closed'}
+      { value: 'OPEN_BACK', label: 'Open'}, 
+      { value: 'CLOSED_BACK', label: 'Semi-open'}, 
+      { value: 'SEMI_OPEN', label: 'Closed'}
     ]
 
     const sortingDriverTypeOptions = [
-      { value: 'planar', label: 'Planar'},
-      { value: 'dynamic', label: 'Dynamic'}, 
-      { value: 'electro-Static', label: 'Electro-Static'}, 
-      { value: 'hybrid', label: 'Hybrid'},
-      { value: 'balanced brmature', label: 'Balanced Armature'}
+      { value: 'DYNAMIC', label: 'Dynamic'}, 
+      { value: 'PLANAR', label: 'Planar'},
+      { value: 'ISODYNAMIC', label: 'Isodynamic'},
+      { value: 'BA', label: 'Balanced Armature'},
+      { value: 'ELECTROSTATIC', label: 'Electro-Static'}, 
+      { value: 'HYBRID', label: 'Hybrid'},
     ]
 
     return (
@@ -112,37 +113,13 @@ function Picker({ filteringAndSorting, setFilteringAndSorting, soundPreferences,
 
         {tab === 'features' && (
           <div>
-
             <div className='select-section'>
+              <div className="label">sort by</div>              
               <Select
                 className='select'
                 options={sortingOptions}
                 onChange={(selectedOption) => onSetFilteringAndSorting('sortBy', selectedOption)}
                 value={filteringAndSorting.sortBy}
-              />
-
-              <Select
-                className='select'
-                options={sortingCategoriesOptions}
-                onChange={(selectedOption) => onSetFilteringAndSorting('category', selectedOption)}
-                value={filteringAndSorting.category}
-                isMulti
-              />
-
-              <Select
-                className='select'
-                options={sortingEnclusureOptions}
-                onChange={(selectedOption) => onSetFilteringAndSorting('enclosure', selectedOption)}
-                value={filteringAndSorting.enclosure}
-                isMulti
-              />
-
-              <Select
-                className='select'
-                options={sortingDriverTypeOptions}
-                onChange={(selectedOption) => onSetFilteringAndSorting('driver', selectedOption)}
-                value={filteringAndSorting.driver}
-                isMulti
               />
             </div>
 
@@ -153,26 +130,61 @@ function Picker({ filteringAndSorting, setFilteringAndSorting, soundPreferences,
 
             <div className="filter-section">
               <div className="label"><span>{filteringAndSorting.priceRange[0]}</span> Price Range <span>{filteringAndSorting.priceRange[1]}</span></div>
-                <Range
-                  value={filteringAndSorting.priceRange}
-                  onChange={(val) => onSetFilteringAndSorting('priceRange', val)}
-                  min={0}
-                  max={5000}
-                  allowCross={false}
-                />
+              <Range
+                value={filteringAndSorting.priceRange}
+                onChange={(val) => onSetFilteringAndSorting('priceRange', val)}
+                min={0}
+                max={5000}
+                allowCross={false}
+              />
             </div>
 
             <div className="filter-section">
               <div className="label"><span>{filteringAndSorting.weightRange[0]}</span> Weight <span>{filteringAndSorting.weightRange[1]}</span></div>
-                <Range
-                  value={filteringAndSorting.weightRange}
-                  onChange={(val) => onSetFilteringAndSorting('weightRange', val)}
-                  min={0}
-                  max={1000}
-                  allowCross={false}
-                />
+              <Range
+                value={filteringAndSorting.weightRange}
+                onChange={(val) => onSetFilteringAndSorting('weightRange', val)}
+                min={0}
+                max={1000}
+                allowCross={false}
+              />
             </div>
-            
+
+            <div className='select-section'>
+              <div className="label">category</div>
+              <Select
+                className='select'
+                options={sortingCategoriesOptions}
+                onChange={(selectedOption) => onSetFilteringAndSorting('category', selectedOption)}
+                value={filteringAndSorting.category}
+                isMulti
+                allowSelectAll
+              />
+            </div>
+
+            <div className='select-section'>
+              <div className="label">enclosure</div>
+              <Select
+                className='select'
+                options={sortingEnclusureOptions}
+                onChange={(selectedOption) => onSetFilteringAndSorting('enclosure', selectedOption)}
+                value={filteringAndSorting.enclosure}
+                isMulti
+                allowSelectAll
+              />
+            </div>
+
+            <div className='select-section'>
+              <div className="label">driver</div>
+              <Select
+                className='select'
+                options={sortingDriverTypeOptions}
+                onChange={(selectedOption) => onSetFilteringAndSorting('driver', selectedOption)}
+                value={filteringAndSorting.driver}
+                isMulti
+                allowSelectAll
+              />
+            </div>         
           </div>
         )}
 
