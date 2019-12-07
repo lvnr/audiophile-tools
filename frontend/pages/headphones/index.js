@@ -6,16 +6,18 @@ import Head from 'next/head'
 import Header from '../../components/header'
 import Picker from '../../components/picker'
 import Headphone from '../../components/headphone'
+import Shimmer from '../../components/Schimmer'
 import '../app.css'
 // import Select from './select'
 import { extendHeadphone } from '../../lib/utils'
-import { rSquared } from 'simple-statistics'
 
 /*
   There are no perfect product, but there are perfect matches...
   Tell us what you love and we'll tell you what to buy.
 
   The most imformed way to buy...
+
+  Your shortcut to educated buys.
 */
 
 const QUERY = gql`
@@ -140,35 +142,38 @@ export default () => {
               value: 'balanced brmature', label: 'Balanced Armature'}
   })
 
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error :(</p>;
+  let headphones
+  let filteredHeadphones
+  let filteredAndSortedHeadphones = []
 
-  console.time('calculating headphone stats')
-  const headphones = data.headphones.map((h) => extendHeadphone(h, soundPreferences))
-  console.timeEnd('calculating headphone stats')
+  if (!error && !loading) {
+    console.time('calculating headphone stats')
+    headphones = data.headphones.map((h) => extendHeadphone(h, soundPreferences))
+    console.timeEnd('calculating headphone stats')
 
-  console.log(headphones);
-  
-  const filteredHeadphones = headphones.filter((headphone) => {
-    if (headphone.price > filteringAndSorting.priceRange[0] && headphone.price < filteringAndSorting.priceRange[1]) 
-      return true
-    return false
-  })
+    console.log(headphones);
+    
+    filteredHeadphones = headphones.filter((headphone) => {
+      if (headphone.price > filteringAndSorting.priceRange[0] && headphone.price < filteringAndSorting.priceRange[1]) 
+        return true
+      return false
+    })
 
-  // const filteredHeadphonesWeight = headphones.filter((headphone) => {
-  //   if (headphone.weight > weight.weightRange[0] && headphone.weight < weight.weightRange[1]) 
-  //     return true
-  //   return false
-  // })
+    // const filteredHeadphonesWeight = headphones.filter((headphone) => {
+    //   if (headphone.weight > weight.weightRange[0] && headphone.weight < weight.weightRange[1]) 
+    //     return true
+    //   return false
+    // })
 
-  const filteredAndSortedHeadphones = filteredHeadphones.sort((a, b) => {
-    const { sortBy } = filteringAndSorting
+    filteredAndSortedHeadphones = filteredHeadphones.sort((a, b) => {
+      const { sortBy } = filteringAndSorting
 
-    if (filteringAndSorting.sortOrder === 'asc')
-      return a[sortBy.value] - b[sortBy.value]
-    if (filteringAndSorting.sortOrder === 'dsc')
-      return b[sortBy.value] - a[sortBy.value]
-  })
+      if (filteringAndSorting.sortOrder === 'asc')
+        return a[sortBy.value] - b[sortBy.value]
+      if (filteringAndSorting.sortOrder === 'dsc')
+        return b[sortBy.value] - a[sortBy.value]
+    })
+  }
 
   return (
     <div>
@@ -202,7 +207,11 @@ export default () => {
             <h6>RESULTS</h6>
           </div>
 
-          {filteredAndSortedHeadphones.map((headphone, i) => <Headphone key={i} headphone={headphone} />)}
+          {loading
+            ? [1,2,3].map((i) => <Shimmer key={i} />)
+            : filteredAndSortedHeadphones.map((headphone, i) => <Headphone key={i} headphone={headphone} />)}
+
+          {error && <div>Oops! Something went wrong...</div>}
 
         </div>
       </main>

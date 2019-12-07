@@ -14,8 +14,8 @@ export const extendHeadphone = (headphone, soundPreferences) => {
   const aggregatedRatings = {}
   const meanRatings = {}
   const SQweights = {
-    midrange:     .15,
-    treble:       .10,
+    midrange:     .17,
+    treble:       .12,
     naturalness:  .07,
     distortion:   .04,
     imaging:      .11,
@@ -23,10 +23,10 @@ export const extendHeadphone = (headphone, soundPreferences) => {
     dynamics:     .08,
     speed:        .07,
     detail:       .07,
-    bassQty:      .05,
-    bassClarity:  .05,
-    bassExtension:.05,
-    bassImpact:   .05,
+    bassQty:      .04,
+    bassClarity:  .04,
+    bassExtension:.04,
+    bassImpact:   .04,
   }
 
   headphone.reviews.map(review => {
@@ -60,7 +60,7 @@ export const extendHeadphone = (headphone, soundPreferences) => {
     const MAX_DELTA = 9
     const delta = 100 - (Math.abs(meanRatings[field] - value) / MAX_DELTA * 100)
 
-    if (value > 0 && delta) {
+    if (value > 0 && delta >= 0) {
       matchedOnFields.push(field)
       return accumulator + delta
     }
