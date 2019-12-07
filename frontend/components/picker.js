@@ -26,9 +26,7 @@ const fieldDisambiguation = {
   bassExtension: 'bass (extension)',
 }
 
-function Picker({ filteringAndSorting, setFilteringAndSorting, soundPreferences, setSoundPreferences, 
-  initialState, categoryOptions, setCategoryOptions, enclosureOptions, setEnclosureOptions, driverTypeOptions, setDriverTypeOptions,
-  weight, setWeight}) {
+function Picker({ filteringAndSorting, setFilteringAndSorting, soundPreferences, setSoundPreferences, initialState}) {
   
     const [tab, setTab] = useState('sound')
 
@@ -42,22 +40,6 @@ function Picker({ filteringAndSorting, setFilteringAndSorting, soundPreferences,
 
     const onSetFilteringAndSorting = (fieldName, fieldValue) => {
       setFilteringAndSorting({ ...filteringAndSorting, [fieldName]: fieldValue })
-    }
-
-    const onSetFilterinWeight = (fieldName, fieldValue) => {
-      setWeight({ ...weight, [fieldName]: fieldValue})
-    }
-
-    const onSetCategoryOptions = (fieldName, fieldValue) => {
-      setCategoryOptions({ ...categoryOptions, [fieldName]: fieldValue})
-    }
-
-    const onSetEnclosureOptions = (fieldName, fieldValue) => {
-      setEnclosureOptions({ ...enclosureOptions, [fieldName]: fieldValue})
-    }
-
-    const onSetDriverTypeOptions = (fieldName, fieldValue) => {
-      setDriverTypeOptions({ ...driverTypeOptions, [fieldName]: fieldValue})
     }
 
     const hasFilters = Object.values(soundPreferences).some((v) => v > 0)
@@ -85,7 +67,7 @@ function Picker({ filteringAndSorting, setFilteringAndSorting, soundPreferences,
     const sortingOptions = [
       { value: 'match', label: 'Match' },
       { value: 'price', label: 'Price' },
-      { value: 'sq', label: 'SQ'}
+      { value: 'sq', label: 'SQ'},
     ]
 
     const sortingCategoriesOptions = [
@@ -133,30 +115,33 @@ function Picker({ filteringAndSorting, setFilteringAndSorting, soundPreferences,
 
             <div className='select-section'>
               <Select
+                className='select'
                 options={sortingOptions}
                 onChange={(selectedOption) => onSetFilteringAndSorting('sortBy', selectedOption)}
                 value={filteringAndSorting.sortBy}
-                placeholder="Sort by"
               />
 
               <Select
+                className='select'
                 options={sortingCategoriesOptions}
-                onChange={(selectedOption) => onSetCategoryOptions('sortBy', selectedOption)}
-                value={categoryOptions.sortBy}
+                onChange={(selectedOption) => onSetFilteringAndSorting('category', selectedOption)}
+                value={filteringAndSorting.category}
                 isMulti
               />
 
               <Select
+                className='select'
                 options={sortingEnclusureOptions}
-                onChange={(selectedOption) => onSetEnclosureOptions('sortBy', selectedOption)}
-                value={enclosureOptions.sortBy}
+                onChange={(selectedOption) => onSetFilteringAndSorting('enclosure', selectedOption)}
+                value={filteringAndSorting.enclosure}
                 isMulti
               />
 
               <Select
+                className='select'
                 options={sortingDriverTypeOptions}
-                onChange={(selectedOption) => onSetDriverTypeOptions('sortBy', selectedOption)}
-                value={driverTypeOptions.sortBy}
+                onChange={(selectedOption) => onSetFilteringAndSorting('driver', selectedOption)}
+                value={filteringAndSorting.driver}
                 isMulti
               />
             </div>
@@ -178,10 +163,10 @@ function Picker({ filteringAndSorting, setFilteringAndSorting, soundPreferences,
             </div>
 
             <div className="filter-section">
-              <div className="label"><span>{weight.weightRange[0]}</span> Weight <span>{weight.weightRange[1]}</span></div>
+              <div className="label"><span>{filteringAndSorting.weightRange[0]}</span> Weight <span>{filteringAndSorting.weightRange[1]}</span></div>
                 <Range
-                  value={weight.weightRange}
-                  onChange={(val) => onSetFilterinWeight('weightRange', val)}
+                  value={filteringAndSorting.weightRange}
+                  onChange={(val) => onSetFilteringAndSorting('weightRange', val)}
                   min={0}
                   max={1000}
                   allowCross={false}

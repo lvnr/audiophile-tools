@@ -114,10 +114,23 @@ export default () => {
 
   const [filteringAndSorting, setFilteringAndSorting] = useState({
       priceRange: [0, 5000],
-      sortBy: { value: 'match', label: 'Match', value: 'SQ', label: 'SQ'},
+      weightRange: [0, 1000],
+      sortBy: { value: 'match', label: 'Match'},
+      category: [ { value: 'over-ear', label: 'Over-ear'}, 
+                  { value: 'on-ear', label: 'On-ear'},
+                  { value: 'in-ear', label: 'In-ear'}],
+      enclosure: [{ value: 'open', label: 'Open'}, 
+                  { value: 'semi-open', label: 'Semi-open'}, 
+                  { value: 'closed', label: 'Closed'}],
+      driver: [ { value: 'planar', label: 'Planar'},
+                { value: 'dynamic', label: 'Dynamic'}, 
+                { value: 'electro-Static', label: 'Electro-Static'}, 
+                { value: 'hybrid', label: 'Hybrid'},
+                { value: 'balanced brmature', label: 'Balanced Armature'}],
       sortOrder: 'dsc',
     })
 
+<<<<<<< Updated upstream
     const [weight, setWeight] = useState({
       weightRange: [0, 1000]
     })
@@ -167,6 +180,27 @@ export default () => {
 
     filteredAndSortedHeadphones = filteredHeadphones.sort((a, b) => {
       const { sortBy } = filteringAndSorting
+=======
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error :(</p>;
+
+  console.time('calculating headphone stats')
+  const headphones = data.headphones.map((h) => extendHeadphone(h, soundPreferences))
+  console.timeEnd('calculating headphone stats')
+
+  console.log(headphones);
+  
+  const filteredHeadphones = headphones.filter((headphone) => {
+    const { priceRange, weightRange } = filteringAndSorting
+    if (headphone.price > priceRange[0] && headphone.weight > weightRange[0] && 
+        headphone.weight < weightRange[1] && headphone.price < priceRange[1]) 
+      return true
+    return false
+  })
+
+  const filteredAndSortedHeadphones = filteredHeadphones.sort((a, b) => {
+    const { sortBy } = filteringAndSorting
+>>>>>>> Stashed changes
 
       if (filteringAndSorting.sortOrder === 'asc')
         return a[sortBy.value] - b[sortBy.value]
@@ -192,14 +226,6 @@ export default () => {
           soundPreferences={soundPreferences}
           setSoundPreferences={setSoundPreferences}
           initialState={initialState}
-          categoryOptions={categoryOptions}
-          setCategoryOptions={setCategoryOptions}
-          enclosureOptions={enclosureOptions}
-          setEnclosureOptions={setEnclosureOptions}
-          driverTypeOptions={driverTypeOptions}
-          setDriverTypeOptions={setDriverTypeOptions}
-          weight={weight}
-          setWeight={setWeight}
         />
 
         <div className='results'>

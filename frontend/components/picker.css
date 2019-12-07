@@ -47,7 +47,17 @@ button {
 }
 
 .select-section {
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-weight: 300;
+  font-size: .8em;
   border-bottom: 1px solid rgba(235, 235, 235, 0.904);
+}
+
+.select-section .label {
+  display: flex;
+  justify-content: center;
+  padding: 5px;
 }
 
 .pick-category {

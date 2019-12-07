@@ -4,13 +4,15 @@ import Select from 'react-select'
 const customStyles = {
   option: (provided, state) => ({
     ...provided,
-    borderBottom: '1px',
+    borderBottom: "1px",
+    padding: "5px",
     color: state.isSelected ? 'white' : 'black',
     backgroundColor: state.isSelected ? 'grey' : 'white',
   }),
   control: (provided, state) => ({
     ...provided,
-    borderWidth: "0",
+    // borderBottom: "1px",
+    padding: "5px",
     backgroundColor: "",
   }),
   singleValue: (provided, state) => {
