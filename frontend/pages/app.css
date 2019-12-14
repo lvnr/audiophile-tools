@@ -1,4 +1,23 @@
 
+:global(body) {
+  margin: 0;
+  font-family: itc-avant-garde-gothic-pro, -apple-system, BlinkMacSystemFont, Avenir Next, Avenir,Helvetica, sans-serif;
+  font-weight: 500;
+  font-style: normal;
+}
+
+.tc {
+  text-align: center;
+}
+
+.mt-100 {
+  margin-top: 100px;
+}
+
+.mb-100 {
+  margin-bottom: 100px;
+}
+
 .categories {
   width: 500px;
   height: 40px;
@@ -90,4 +109,21 @@
   .results-header {
     width: 275px;
   }
+}
+
+/* links */
+
+.links a {
+  color: black;
+  transition: color .3s ease;
+  height: 48px;
+  display: inline-block;
+}
+
+.links a:hover {
+  color: #999;
+}
+
+.links a > i {
+  margin: 0 20px;
 }

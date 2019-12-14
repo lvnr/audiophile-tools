@@ -1,4 +1,5 @@
 import React from 'react'
+import Link from 'next/link'
 
 import './headphone.css'
 import { toFixed1 } from '../lib/utils'
@@ -18,7 +19,10 @@ const Headphone = ({ headphone }) => {
       <div className="detail">
 
         <h5>
-          {headphone.model} by {headphone.company.name}
+          <Link href="/headphones/[slug]" as={`/headphones/${headphone.slug}`}>
+            <a>{headphone.model}</a>
+          </Link>
+          &nbsp; by {headphone.company.name}
         </h5>
 
         <div className="metric-body">
@@ -31,7 +35,7 @@ const Headphone = ({ headphone }) => {
 
             <div className='label-icon'>
               <div>
-                <span className="label">match</span>
+                <span className="label">Match</span>
               </div>
 
               <div className='dot'>
@@ -47,12 +51,12 @@ const Headphone = ({ headphone }) => {
 
           <div className="metric">
             <div className="value">{toFixed1(headphone.meanRatings.comfort || '–')}</div>
-            <span className="label">comfort</span>
+            <span className="label">Comfort</span>
           </div>
 
           <div className="metric">
             <div className="value">{toFixed1(headphone.meanRatings.priceVsPerf || '–')}</div>
-            <span className="label">price vs perf.</span>
+            <span className="label">Value</span>
           </div>
 
           <div className="metric price">

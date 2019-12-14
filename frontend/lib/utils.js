@@ -52,7 +52,7 @@ export const extendHeadphone = (headphone, soundPreferences) => {
     return accumulator + (meanRatings.priceVsPerf || 5) * weight
   }
 
-  const SQ = Object.entries(SQweights).reduce(SQreducer, 0)
+  const SQ = Object.values(meanRatings).length > 0 ? Object.entries(SQweights).reduce(SQreducer, 0) : '–'
 
   let matchedOnFields = []
 

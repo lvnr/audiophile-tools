@@ -10,12 +10,13 @@ import Shimmer from '../../components/Schimmer'
 import '../app.css'
 // import Select from './select'
 import { extendHeadphone } from '../../lib/utils'
+import isDevelopment from '../../lib/isDevelopment'
 
 /*
   There are no perfect product, but there are perfect matches...
   Tell us what you love and we'll tell you what to buy.
 
-  The most imformed way to buy...
+  The most informed way to buy...
 
   Your shortcut to educated buys.
 */
@@ -25,6 +26,7 @@ const QUERY = gql`
     headphones {
       id
       model
+      slug
       price
       images
       category
@@ -127,11 +129,11 @@ export default () => {
   let filteredAndSortedHeadphones = []
 
   if (!error && !loading) {
-    console.time('calculating headphone stats')
+    isDevelopment() && console.time('calculating headphone stats')
     headphones = data.headphones.map((h) => extendHeadphone(h, soundPreferences))
-    console.timeEnd('calculating headphone stats')
+    isDevelopment() && console.timeEnd('calculating headphone stats')
 
-    console.log(headphones);
+    isDevelopment() && console.log(headphones);
     
     filteredHeadphones = headphones.filter((headphone) => {
       const { priceRange, weightRange, category, enclosure, driver } = filteringAndSorting

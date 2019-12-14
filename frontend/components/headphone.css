@@ -60,7 +60,7 @@ main {
 	animation-timing-function: linear;
 }
 
-.detail {
+.product .detail {
   width: 760px;
   display: flex;
   flex-direction: column;
@@ -145,15 +145,25 @@ main {
   font-size: 9px;
 }
 
-.detail h5 {
+.detail h5,
+.detail h5 a {
   font-family: oxtail,serif;
   font-weight: 700;
   font-style: normal;
-  font-size: 21px;
+  font-size: 18px;
   margin: 15px 0 0 0;
   display: flex;
   justify-content: center;
-  color: #000000;
+  align-items: baseline;
+  color: #999;
+}
+
+.detail h5 a {
+  text-transform: none;
+  margin: 0;
+  letter-spacing: 0;
+  font-size: 21px;
+  color: #000;
 }
 
 /* tooltip */

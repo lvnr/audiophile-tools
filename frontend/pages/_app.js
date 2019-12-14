@@ -3,6 +3,7 @@ import App from "next/app";
 import Router from "next/router";
 import { ApolloProvider } from "@apollo/react-hooks";
 import withApolloClient from "../lib/with-apollo-client";
+import './app.css'
 
 import { googlePageview } from "../components/GoogleAnalytics";
 
