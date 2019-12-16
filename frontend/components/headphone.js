@@ -22,7 +22,7 @@ const Headphone = ({ headphone }) => {
           <Link href="/headphones/[slug]" as={`/headphones/${headphone.slug}`}>
             <a>{headphone.model}</a>
           </Link>
-          &nbsp; by {headphone.company.name}
+          {headphone.company && <>&nbsp; by {headphone.company.name}</>}
         </h5>
 
         <div className="metric-body">

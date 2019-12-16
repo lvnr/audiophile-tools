@@ -29,16 +29,17 @@ export const extendHeadphone = (headphone, soundPreferences) => {
     bassImpact:   .04,
   }
 
-  headphone.reviews.map(review => {
-    Object.entries(review).map(([field, value]) => {
-      if (field && value && typeof value === 'number') {
-        if (aggregatedRatings[field] !== undefined)
-          aggregatedRatings[field].push(value)
-        else
-          aggregatedRatings[field] = [value]
-      }
+  if (headphone.reviews)
+    headphone.reviews.map(review => {
+      Object.entries(review).map(([field, value]) => {
+        if (field && value && typeof value === 'number') {
+          if (aggregatedRatings[field] !== undefined)
+            aggregatedRatings[field].push(value)
+          else
+            aggregatedRatings[field] = [value]
+        }
+      })
     })
-  })
 
   Object.entries(aggregatedRatings).map(([field, ratings]) => meanRatings[field] = mean(ratings))
 
