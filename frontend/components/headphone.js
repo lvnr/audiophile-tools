@@ -1,5 +1,6 @@
 import React from 'react'
 import Link from 'next/link'
+import ReactTooltip from 'react-tooltip'
 
 import './headphone.css'
 import { toFixed1 } from '../lib/utils'
@@ -17,6 +18,9 @@ const Headphone = ({ headphone }) => {
       </div>
 
       <div className="detail">
+
+      <p data-tip="hello world">Tooltip</p>
+      <ReactTooltip />
 
         <h5>
           <Link href="/headphones/[slug]" as={`/headphones/${headphone.slug}`}>
