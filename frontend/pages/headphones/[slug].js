@@ -339,12 +339,12 @@ const Headphone = () => {
         .back-icon:hover {
           color: #999;
         }
-        
+
         .table-layout {
           display: flex;
           overflow: auto;
         }
-        
+
         .labels {
           margin: 3px;
           border: 1px solid #efefef;
@@ -410,6 +410,43 @@ const Headphone = () => {
           background-size: contain;
           background-repeat: no-repeat;
           background-position: center;
+        }
+
+
+        @media only screen and (max-width: 380px){
+          .table-layout {
+            display: flex;
+            // overflow: auto;
+            width: 250px;
+          }
+        }
+
+        @media only screen and (max-width: 380px){
+          .labels {
+            position: absolute;
+            left: 0px;
+            width: 130px;
+          }
+        }
+
+        @media only screen and (max-width: 960px){
+          .back-icon {
+            position: absolute;
+            left: 10px;
+          }
+        }
+
+        @media only screen and (max-width: 960px){
+          h3 {
+            // font-size: 100px;
+            // // font-weight: 100;
+          }
+        }
+
+        @media only screen and (max-width: 960px){
+          .photo {
+            width: 90%;
+          }
         }
       `}</style>
     </div>

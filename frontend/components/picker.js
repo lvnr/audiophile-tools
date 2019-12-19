@@ -5,6 +5,7 @@ import Slider, { Range } from 'rc-slider';
 import 'rc-slider/assets/index.css'
 import './picker.css'
 import { object } from 'prop-types';
+import store from 'store'
 
 const labels = {
   soundstage: {
@@ -32,10 +33,13 @@ function Picker({ filteringAndSorting, setFilteringAndSorting, soundPreferences,
 
     const onChange = (fieldName, fieldValue) => {
       setSoundPreferences({ ...soundPreferences, [fieldName]: fieldValue })
+      store.set('soundPreferences', { ...soundPreferences, [fieldName]: fieldValue })
     }
+  
 
     const onClick = () => {
       setSoundPreferences(initialState)
+      store.set('soundPreferences', initialState)
     }
 
     const onSetFilteringAndSorting = (fieldName, fieldValue) => {
@@ -43,11 +47,11 @@ function Picker({ filteringAndSorting, setFilteringAndSorting, soundPreferences,
     }
 
     const hasFilters = Object.values(soundPreferences).some((v) => v > 0)
-    
+   
     const pickerArray = Object.keys(soundPreferences).map((field, i) => {
       const value = soundPreferences[field]
       // const label = labels[field] && labels[field][value] ? labels[field][value] : soundPreferences[field]
-      
+
       return (
         <div className="filter-section" key={i}>
           <div className='container-slider-button'>

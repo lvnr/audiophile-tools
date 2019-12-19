@@ -3,6 +3,7 @@ import { useQuery } from '@apollo/react-hooks'
 import { gql } from 'apollo-boost'
 import Head from 'next/head'
 
+import store from 'store'
 import Header from '../../components/header'
 import Picker from '../../components/picker'
 import Headphone from '../../components/headphone'
@@ -11,6 +12,7 @@ import '../app.css'
 // import Select from './select'
 import { extendHeadphone } from '../../lib/utils'
 import isDevelopment from '../../lib/isDevelopment'
+import { object } from 'prop-types'
 
 /*
   There are no perfect product, but there are perfect matches...
@@ -112,8 +114,11 @@ export default () => {
     sibilance: 0,
   }
 
-  const [soundPreferences, setSoundPreferences] = useState(initialState)
+  const savedSoundPreferences = store.get('soundPreferences')
+  
+  const [soundPreferences, setSoundPreferences] = useState(savedSoundPreferences !== undefined ? savedSoundPreferences : initialState)
 
+ 
   const [filteringAndSorting, setFilteringAndSorting] = useState({
       priceRange: [0, 5000],
       weightRange: [0, 1000],
