@@ -1,0 +1,19 @@
+.c-btn {
+    padding: .1em .5em;
+    color: #000000;
+    background: #ffffff;
+    border: 1px solid #dfdfdf;
+    border-radius: 1em;
+    cursor: pointer;
+    transition: background .15s ease-out;
+}
+  
+.c-btn:hover {
+    background: #000000;
+    color: rgb(255, 255, 255);
+}
+
+.c-btn:focus {
+    outline: 0;
+    box-shadow: 0 0 4px currentColor;
+}

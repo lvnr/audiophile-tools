@@ -6,6 +6,7 @@ import 'rc-slider/assets/index.css'
 import './picker.css'
 import { object } from 'prop-types';
 import store from 'store'
+import Modal from './Modal'
 
 const labels = {
   soundstage: {
@@ -95,6 +96,10 @@ function Picker({ filteringAndSorting, setFilteringAndSorting, soundPreferences,
       { value: 'HYBRID', label: 'Hybrid'},
     ]
 
+    const modalProps = {
+      triggerText: 'This is a button to trigger the Modal'    
+    };
+
     return (
       <div className="taste-picker">
 
@@ -106,6 +111,10 @@ function Picker({ filteringAndSorting, setFilteringAndSorting, soundPreferences,
             <button className={`reset-button ${ hasFilters ? 'active' : 'passive'}`} onClick={onClick}/>
          </div>
 
+        </div>
+
+        <div>
+          <Modal {...modalProps}/>
         </div>
 
         <div className="pick-category">
