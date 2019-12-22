@@ -1,23 +1,33 @@
-import React, { Fragment } from 'react';
+import React, { Component, Fragment } from 'react'
 
-import './Modal.css';
-import './ModalContent'
-import ModalContent from './ModalContent';
+import './Modal.css'
+import './ModalContent.css'
+import Portal from './Portal'
 
-const ModalTrigger = ({ text }) => <button className='c-btn'>{ text }</button>;
-
-class Modal extends React.Component {
+class Modal extends Component {
     render () {
-        const { triggerText } = this.props; 
-      return (
-          <Fragment>
-               <ModalTrigger text={triggerText} />
-                <ModalContent />
-          </Fragment>
-        
+        const { isOpen, onClose } = this.props
+
+        return (
+            <Fragment>
+                <Portal>
+                   {isOpen && (
+                        <aside className="c-modal-cover" onClick={onClose} >
+                            <div className="c-modal">
+                                <button className="c-modal__close" onClick={onClose}>
+                                    <span className="u-hide-visually">Close</span>
+                                    <svg className="c-modal__close-icon" viewBox="0 0 40 40"><path d="M 10,10 L 30,30 M 30,10 L 10,30"></path></svg>
+                                </button>
+                                <div className="c-modal__body">
+                                    {this.props.children}
+                                </div>
+                            </div>
+                        </aside>
+                   )}
+                </Portal>
+            </Fragment>
       )
     }
-
 }
 
 export default Modal

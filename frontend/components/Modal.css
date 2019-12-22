@@ -1,4 +1,7 @@
 .c-btn {
+    position: absolute;
+    top: 50px;
+    left: 100px;
     padding: .1em .5em;
     color: #000000;
     background: #ffffff;
@@ -15,5 +18,4 @@
 
 .c-btn:focus {
     outline: 0;
-    box-shadow: 0 0 4px currentColor;
 }
