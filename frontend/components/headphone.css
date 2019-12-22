@@ -194,7 +194,7 @@ main {
   transform: translate(-50%, calc(18% + 10px));
 }
 
-.tooltip:hover::after {
+/* .tooltip:hover::after {
   display: block;
 }
 
@@ -217,7 +217,7 @@ main {
 
 .tooltip:hover::before {
   display: block;
-}
+} */
 
 
 

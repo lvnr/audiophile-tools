@@ -19,8 +19,8 @@ const Headphone = ({ headphone }) => {
 
       <div className="detail">
 
-      <p data-tip="hello world">Tooltip</p>
-      <ReactTooltip />
+      {/* <p data-tip="hello world">Tooltip</p>
+      <ReactTooltip /> */}
 
         <h5>
           <Link href="/headphones/[slug]" as={`/headphones/${headphone.slug}`}>
