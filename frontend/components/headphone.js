@@ -84,7 +84,9 @@ const Headphone = ({ headphone }) => {
           background-position: center;
         }
       `}</style>
+  
     </div>
+
   );
 }
 

@@ -1,12 +1,13 @@
 import React from 'react'
 import Link from 'next/link'
 import './header.css'
+import ReactTooltip from 'react-tooltip'
 
 const links = [
-  { href: '/headphones', label: '🎧 Headphones' },
-  { href: '/speakers', label: '🔊Speakers' },
-  { href: '/components', label: '⚡️ Components' },
-  { href: '/music', label: '🎻 Music' }
+  { href_1: '/headphones', label_1: '🎧 Headphones' },
+  { href: '#/speakers', label: '🔊Speakers' },
+  { href: '#/components', label: '⚡️ Components' },
+  { href: '#/music', label: '🎻 Music' }
 ].map(link => {
   link.key = `nav-link-${link.href}-${link.label}`
   return link
@@ -25,14 +26,16 @@ const Header = () => (
 
     <nav>
       <ul>
-        {links.map(({ key, href, label }) => (
+        {links.map(({ key, href, label, href_1, label_1 }) => (
           <li key={key}>
-            <a href={href}>{label}</a>
+            <ReactTooltip />
+            <a className='comming-s' data-class='comming-s-tool-t' data-tip="Comming Soon" href={href}>{label}</a>
+            <a href={href_1}>{label_1}</a>
           </li>
         ))}
       </ul>
     </nav>
-    
+
   </header>
 )
 

@@ -2,6 +2,7 @@ main {
   display: flex;
   justify-content: center;
   margin: 0 auto;
+  position: relative;
 }
 
 .product {
@@ -187,12 +188,12 @@ main {
   z-index: 2;
 }
 
-.tooltip.bottom::after {
+/* .tooltip.bottom::after {
   content: 'Lorem ipsum dolor sit amet';
   bottom: 0;
   left: 50%;
   transform: translate(-50%, calc(18% + 10px));
-}
+} */
 
 /* .tooltip:hover::after {
   display: block;
