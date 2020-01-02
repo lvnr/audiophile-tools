@@ -1,0 +1,94 @@
+.c-modal-cover {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10; 
+    transform: translateZ(0);
+    background-color: rgba(80, 80, 80, 0.15);
+  }
+  
+  .c-modal {
+    padding: 2.5em 1.5em 1.5em 1.5em;
+    background-color: #FFFFFF;
+    box-shadow: 0 0 10px 3px rgba(0, 0, 0, 0.1);
+    overflow-y: auto;
+    width: 600px;
+    position: relative;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .c-modal__close {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    padding: .2em;
+    line-height: 1;
+    background: #f6f6f7;
+    border: 0;
+    box-shadow: 0;
+    cursor: pointer;
+    transition: background .15s ease-out;
+  }
+
+  .c-modal__close:hover {
+    background-color: black;
+  }
+
+  .c-modal__close-icon {
+    width: 15px;
+    height: 15px;
+    fill: transparent;
+    stroke:  #999;
+    stroke-linecap: round;
+    stroke-width: 2;
+    transition: stroke .15s ease-out;
+  }
+
+  .c-modal__close-icon:hover {
+    stroke: white;
+    background-color: black;
+  }
+  
+  .c-modal__body {
+    padding-top: .25em;
+  }
+
+  .u-hide-visually {
+    border: 0 !important;
+    clip: rect(0 0 0 0) !important;
+    height: 1px !important;
+    margin: -1px !important;
+    overflow: hidden !important;
+    padding: 0 !important;
+    position: absolute !important;
+    width: 1px !important;
+    white-space: nowrap !important;
+  }
+
+  @media only screen and (max-width: 500px) {
+    .c-modal {
+      height: 100%;
+      margin-top: 60px;
+      padding-bottom: 20px;
+    }
+  }
+
+  @media only screen and (max-width: 500px) {
+    .c-modal__close {
+     position: fixed;
+     top: 10px;
+     right: 10px;
+    }
+  }
+
+  @media only screen and (max-width: 500px) {
+    .c-modal__close-icon {
+      width: 15px;
+      height: 15px;
+    }
+  }

@@ -3,14 +3,19 @@ import { useQuery } from '@apollo/react-hooks'
 import { gql } from 'apollo-boost'
 import Head from 'next/head'
 
+import store from 'store'
 import Header from '../../components/header'
 import Picker from '../../components/picker'
 import Headphone from '../../components/headphone'
 import Shimmer from '../../components/Schimmer'
 import '../app.css'
+import './footer.css'
 // import Select from './select'
 import { extendHeadphone } from '../../lib/utils'
 import isDevelopment from '../../lib/isDevelopment'
+import { object } from 'prop-types'
+import Link from 'next/link'
+
 
 /*
   There are no perfect product, but there are perfect matches...
@@ -112,8 +117,11 @@ export default () => {
     sibilance: 0,
   }
 
-  const [soundPreferences, setSoundPreferences] = useState(initialState)
+  const savedSoundPreferences = store.get('soundPreferences')
+  
+  const [soundPreferences, setSoundPreferences] = useState(savedSoundPreferences !== undefined ? savedSoundPreferences : initialState)
 
+ 
   const [filteringAndSorting, setFilteringAndSorting] = useState({
       priceRange: [0, 5000],
       weightRange: [0, 1000],
@@ -195,8 +203,17 @@ export default () => {
             : filteredAndSortedHeadphones.map((headphone, i) => <Headphone key={i} headphone={headphone} />)}
 
           {error && <div>Oops! Something went wrong...</div>}
-
         </div>
+
+        <div className='footer-container'> 
+          <footer>
+                <div className='cr'> &copy; Arakelyan Audio  2019</div>
+                {/* <Link to="/"> */}
+                  <a href="/about"> about </a>
+                {/* </Link> */}
+            </footer>
+        </div>
+  
       </main>
       
     </div>

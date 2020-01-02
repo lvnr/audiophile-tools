@@ -134,6 +134,18 @@ const ReviewAverages = ({ headphone, criteria, hoverOnDot }) => (
         height: 200px;
         align-items: flex-start;
       }
+
+      @media only screen and (max-width: 960px){
+        .review {
+          width: 100px;
+        }
+      }
+
+      @media only screen and (max-width: 960px){
+        .review:first-child {
+         margin-left: 39px;
+        }
+      }
     `}</style>
   </div>
 )

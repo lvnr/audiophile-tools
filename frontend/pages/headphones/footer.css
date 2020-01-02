@@ -1,0 +1,33 @@
+.product-container {
+   position: relative;
+  }
+
+footer {
+    height: 40px;
+    width: 100%;
+    background-color: rgba(216, 216, 216, 0.74);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0px 5px;
+   
+}
+
+footer > a {
+    padding-right: 10px;
+    transition: color 0.20s ease-in ;
+}
+
+footer > a:hover {
+    color: white;
+}
+
+.cr {
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #999;
+    font-weight: 300;
+    padding-left: 10px;
+}
+

@@ -5,6 +5,8 @@ import Slider, { Range } from 'rc-slider';
 import 'rc-slider/assets/index.css'
 import './picker.css'
 import { object } from 'prop-types';
+import store from 'store'
+import Modal from './Modal'
 
 const labels = {
   soundstage: {
@@ -32,26 +34,45 @@ function Picker({ filteringAndSorting, setFilteringAndSorting, soundPreferences,
 
     const onChange = (fieldName, fieldValue) => {
       setSoundPreferences({ ...soundPreferences, [fieldName]: fieldValue })
+      store.set('soundPreferences', { ...soundPreferences, [fieldName]: fieldValue })
     }
+  
 
     const onClick = () => {
       setSoundPreferences(initialState)
+      store.set('soundPreferences', initialState)
     }
 
     const onSetFilteringAndSorting = (fieldName, fieldValue) => {
       setFilteringAndSorting({ ...filteringAndSorting, [fieldName]: fieldValue })
     }
 
+    const [isModalOpen, setModalOpen] = useState(false)
+
     const hasFilters = Object.values(soundPreferences).some((v) => v > 0)
-    
+   
     const pickerArray = Object.keys(soundPreferences).map((field, i) => {
       const value = soundPreferences[field]
       // const label = labels[field] && labels[field][value] ? labels[field][value] : soundPreferences[field]
-      
+
       return (
         <div className="filter-section" key={i}>
           <div className='container-slider-button'>
-            <button className={`reset-button ${ value > 0 ? 'active' : 'passive'}`} onClick={() => onChange(field, 0)}/>
+
+              {field === 'soundstage' && (
+                <div className='modal-button'>
+                  <span className='icon space' onClick={() => setModalOpen(true)} >?</span>
+                  <Modal isOpen={isModalOpen} onClose={() => setModalOpen(!isModalOpen)}>
+                    Where does it come from? Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.
+                    Where does it come from? Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.
+                    Where does it come from? Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.
+                    Where does it come from? Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.
+                  </Modal>
+                </div>
+              )}
+
+              <button className={`reset-button ${ value > 0 ? 'active' : 'passive'}`} onClick={() => onChange(field, 0)}/>
+
           </div>
           
           <div className="label">
@@ -94,7 +115,6 @@ function Picker({ filteringAndSorting, setFilteringAndSorting, soundPreferences,
     return (
       <div className="taste-picker">
 
-        
         <div className="pick-header">
           <h5>PICK YOUR FLAVOR</h5>
 

@@ -2,6 +2,7 @@ main {
   display: flex;
   justify-content: center;
   margin: 0 auto;
+  position: relative;
 }
 
 .product {
@@ -187,14 +188,14 @@ main {
   z-index: 2;
 }
 
-.tooltip.bottom::after {
+/* .tooltip.bottom::after {
   content: 'Lorem ipsum dolor sit amet';
   bottom: 0;
   left: 50%;
   transform: translate(-50%, calc(18% + 10px));
-}
+} */
 
-.tooltip:hover::after {
+/* .tooltip:hover::after {
   display: block;
 }
 
@@ -217,7 +218,7 @@ main {
 
 .tooltip:hover::before {
   display: block;
-}
+} */
 
 
 
@@ -228,6 +229,12 @@ main {
     height: 900px;
     display: flex;
     flex-direction: column;
+  }
+}
+
+@media only screen and (max-width: 960px){
+  .metric {
+    padding-bottom: 30px;
   }
 }
 
@@ -250,11 +257,13 @@ main {
 }
 
 @media only screen and (max-width: 960px){
-  .detail {
+  .product .detail {
     width: 200px;
     height: 900px;
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
 }
 
@@ -273,3 +282,10 @@ main {
   }
 }
  
+@media only screen and (max-width: 960px) {
+  .detail {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
