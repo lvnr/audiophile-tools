@@ -15,17 +15,20 @@
     "node": "10.x"
   },
   "dependencies": {
-    "@prisma/photon": "2.0.0-preview017.2",
+    "@prisma/photon": "2.0.0-preview019",
     "graphql": "^14.5.8",
+    "graphql-shield": "^7.0.4",
     "graphql-yoga": "^1.18.3",
+    "jsonwebtoken": "^8.5.1",
     "nexus": "^0.12.0-rc.5",
     "nexus-prisma": "^0.6.1"
   },
   "devDependencies": {
     "@prisma/sdk": "0.0.76",
+    "@types/jsonwebtoken": "^8.3.5",
     "@types/node": "^12.12.14",
     "@types/ws": "^6.0.4",
-    "prisma2": "^2.0.0-preview017.2",
+    "prisma2": "2.0.0-preview019",
     "ts-node": "^8.5.4",
     "ts-node-dev": "^1.0.0-pre.44",
     "typescript": "^3.7.3"
