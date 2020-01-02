@@ -3,14 +3,14 @@
   }
 
 footer {
-    height: 40px;
+    min-height: 100px;
     width: 100%;
     background-color: rgba(216, 216, 216, 0.74);
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0px 5px;
-   
+    padding: 0px 80px;
+    box-sizing: border-box;
 }
 
 footer > a {
@@ -29,5 +29,9 @@ footer > a:hover {
     color: #999;
     font-weight: 300;
     padding-left: 10px;
+}
+
+footer .column {
+
 }
 

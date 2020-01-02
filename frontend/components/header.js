@@ -4,10 +4,10 @@ import './header.css'
 import ReactTooltip from 'react-tooltip'
 
 const links = [
-  { href_1: '/headphones', label_1: '🎧 Headphones' },
-  { href: '#/speakers', label: '🔊Speakers' },
-  { href: '#/components', label: '⚡️ Components' },
-  { href: '#/music', label: '🎻 Music' }
+  { href: '/headphones', label: '🎧 Headphones', active: true },
+  { href: '#/speakers', label: '🔊Speakers', active: false },
+  { href: '#/components', label: '⚡️ Components', active: false },
+  // { href: '#/music', label: '🎻 Music', active: false }
 ].map(link => {
   link.key = `nav-link-${link.href}-${link.label}`
   return link
@@ -26,11 +26,12 @@ const Header = () => (
 
     <nav>
       <ul>
-        {links.map(({ key, href, label, href_1, label_1 }) => (
+        {links.map(({ key, href, label, active }) => (
           <li key={key}>
             <ReactTooltip />
-            <a className='comming-s' data-class='comming-s-tool-t' data-tip="Comming Soon" href={href}>{label}</a>
-            <a href={href_1}>{label_1}</a>
+            <a href={href} data-class='comming-soon-tt' data-tip={active ? '' : 'Comming Soon'}>
+              {label}
+            </a>
           </li>
         ))}
       </ul>

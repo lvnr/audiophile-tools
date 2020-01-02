@@ -205,17 +205,17 @@ export default () => {
           {error && <div>Oops! Something went wrong...</div>}
         </div>
 
-        <div className='footer-container'> 
-          <footer>
-                <div className='cr'> &copy; Arakelyan Audio  2019</div>
-                {/* <Link to="/"> */}
-                  <a href="/about"> about </a>
-                {/* </Link> */}
-            </footer>
-        </div>
-  
       </main>
-      
+
+      <footer>
+        <div className='column'>
+          <a href="/about"> About </a>
+        </div>
+        <div className='column'>
+          <div className='cr'> &copy; Arakelyan Audio - 2020</div>
+        </div>
+      </footer>
+
     </div>
   )
 }

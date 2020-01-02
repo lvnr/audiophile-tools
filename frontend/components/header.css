@@ -32,17 +32,17 @@ a:hover {
   color: rgb(39, 39, 39);
 }
 
-.comming-s-tool-t {
+a:active {
+  color: black;
+}
+
+.comming-soon-tt {
   color: rgb(235, 235, 235);
   text-decoration: none;
   font-size: 12px;
   text-transform: uppercase;
   letter-spacing: 0.1em;
   font-weight: 300;
-}
-
-.comming-s {
-  color: rgb(218, 218, 218);
 }
 
 @media only screen and (max-width: 960px){
