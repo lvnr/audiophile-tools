@@ -28,7 +28,7 @@ import Link from 'next/link'
 
 const QUERY = gql`
   {
-    headphones {
+    headphones(where: { active: { equals: true } }) {
       id
       model
       slug
@@ -43,49 +43,49 @@ const QUERY = gql`
       wireless
       tunability
       portability
-#      company {
-#        name
-#      }
-#      reviews {
-#        id
-#        reviewer
-#        url
-#        credibility
-#        trebleExtension
-#        priceVsPerf
-#        aesthetics
-#        soundstage
-#        imaging
-#        balanced
-#        bassQty
-#        bassClarity
-#        bassImpact
-#        bassExtension
-#        bassTightness
-#        midrange
-#        treble
-#        smoothess
-#        naturalness
-#        detail
-#        distortion
-#        microDetail
-#        warmth
-#        sibilance
-#        speed
-#        nonFatiguing
-#        noBrainer
-#        dynamics
-#        brigthness
-#        matchability
-#        analytical
-#        sourceForgiving
-#        isolation
-#        leakage
-#        transparency
-#        forwardness
-#        build
-#        comfort
-#      }
+      company {
+        name
+      }
+      reviews {
+        id
+        reviewer
+        url
+        credibility
+        trebleExtension
+        priceVsPerf
+        aesthetics
+        soundstage
+        imaging
+        balanced
+        bassQty
+        bassClarity
+        bassImpact
+        bassExtension
+        bassTightness
+        midrange
+        treble
+        smoothess
+        naturalness
+        detail
+        distortion
+        microDetail
+        warmth
+        sibilance
+        speed
+        nonFatiguing
+        noBrainer
+        dynamics
+        brigthness
+        matchability
+        analytical
+        sourceForgiving
+        isolation
+        leakage
+        transparency
+        forwardness
+        build
+        comfort
+      }
     }
   }
 `
